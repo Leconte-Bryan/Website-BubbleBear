@@ -15,44 +15,14 @@ include("init.php");
 <body>
     <div class="wrapper">
         <div id="top-left">
-            <!--tableau-->
-            <table border="1" cellpadding="10" cellspacing="0">
-                <!--tr represent a row of a table-->
-                <tr>
-                    <!--th represent an header cell-->
-                    <th></th>
-                    <th>monday</th>
-                    <th colspan="2">tuesday</th>
-                    <th>wednesday</th>
-                    <th>thursday</th>
-                    <th>friday</th>
-                </tr>
-                <!--second row-->
-                <tr>
-                    <td rowspan="3"> pool</td>
-                    <td>swim</td>
-                    <td>running</td>
-                    <td>walking</td>
-                    <td>acrobatic</td>
-                    <td>flying</td>
-                    <td>random thing</td>
-                </tr>
-                <tr>
-                    <td>swim</td>
-                    <td>running</td>
-                    <td>walking</td>
-                    <td>acrobatic</td>
-                    <td>flying</td>
-                    <td>random thing</td>
-                </tr>
-                <tr>
-                    <td>swim</td>
-                    <td>running</td>
-                    <td>walking</td>
-                    <td>acrobatic</td>
-                    <td>flying</td>
-                    <td>random thing</td>
-                </tr>
+            <img class="game-icone" src="Main_img_BubleBear.jpg" alt="">
+            <table class="game-data">
+                <tr><th class="bg">Title : BubbleBear </th></tr>
+                <tr><th class="bg">Type :  Speedrun </th></tr>
+                <tr><th class="bg">Recommended age : 7 </th></tr>
+                <tr><th class="bg">Command Type : Mouse </th></tr>
+                <tr><th class="bg">Released date : 28/01/2025 </th></tr>
+                
             </table>
         </div>
 
@@ -106,7 +76,7 @@ include("init.php");
         </div>
         <div id="bottom-center">
 
-            <a target="_blank" href="BuildBB/GamePage.php"> <img src="Start_ui_def.png" alt=""></a>
+            <a target="_blank" href="BuildBB/GamePage.php"> <img class="button-play" src="Start_ui_def.png" alt=""></a>
         </div>
     </div>
 
