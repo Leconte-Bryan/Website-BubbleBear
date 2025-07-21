@@ -1,68 +1,5 @@
 <?php
 include("init.php");
-include("Header.php");
-
-// Expose the sort order at the beginning 
-$sorting_by = $_POST["sort-order"];
-
-
-/**
- * Display the leaderboard depending if sorted or not
- * @param mixed $conn
- * @param mixed $sorting_by // ASC OR DESC
- * @return mysqli_result
- */
-/*
-function DisplayLeaderboard($conn, $sorting_by): mysqli_result
-{
-    if (isset($_POST["sort-order"]) && $_POST["sort-order"] === "DESC") {
-        $sorting_by = 'DESC';
-    } else {
-        $sorting_by = 'ASC';
-    }
-
-    // If request correspond : sort depending of the entered name
-    if (isset($_POST['SortButton'])) {
-
-
-        // Crée table temporaire comme leaderboard mais avec une valeur supplémentaire : global_rank 
-        // global_rank est une valeur déterminée selon le score (meilleur score = 1, puis 2...)
-        // Ensuite sélectionne les lignes de cette table (récupèrent par la même occasion les ranks)
-        $sql = "WITH RankedLeaderboard AS (
-    SELECT 
-        username, 
-        score, 
-        game_date,
-        RANK() OVER (ORDER BY score ASC) AS global_rank
-    FROM leaderboard
-INNER JOIN users ON leaderboard.user_id = users.user_id 
-)
-SELECT * FROM RankedLeaderboard
-WHERE username LIKE ?
-ORDER BY score $sorting_by;";
-
-
-        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
-        // Valide tout les username contenant l'entré et ayant une suite
-        $username = $username . '%';
-        // Prepare this specific request
-        $stmt = $conn->prepare($sql);
-        // first argument : data type (s = string), second = the value
-        $stmt->bind_param("s", $username);
-        // Execute the query
-        $stmt->execute();
-        // Get the result
-        return $result_DisplayLeaderboard = $stmt->get_result();
-        //If no entry
-    } else {
-        $sql_DisplayLeaderboard = "Select username, score, game_date, RANK() OVER (ORDER BY score ASC) AS global_rank
-FROM leaderboard INNER JOIN users
-On leaderboard.user_id = users.user_id
-ORDER BY score $sorting_by;";
-        return $result_DisplayLeaderboard = mysqli_query($conn, $sql_DisplayLeaderboard);
-    }
-}
-*/
 ?>
 
 <!DOCTYPE html>
@@ -74,181 +11,236 @@ ORDER BY score $sorting_by;";
     <title>Document</title>
     <link rel="stylesheet" href="Style.css">
 </head>
-<header>HEADER</header>
 
-<!--container-->
-<div class="LeaderboardBox">
-        
-    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="top: 100px; display:flex">
-        <input type="text" name="username" id="username" placeholder="username to search"><br>
-        <input type="hidden" name="ActionName" value="SortingByName">
-        <input type="submit" name="SortByName" value="Sort" id="SortByUsername-button"><br>
-    </form>
-
-    <table class="LeaderboardMainMenu" cellpadding="10" cellspacing="0" style="color: blue;">
-        <caption>
-           Leaderboard 
-        </caption>
-        <tr>
-        <th class="bg">#</th>
-        <th class="bg" style="width: 200px;" align="left">Player</th>
-        <th class="bg" id="sort-time">
-            Time
-            <button id="SortByScore-button" method="post" style="display: inline; background-color: rgba(0, 0, 0, 0); border : rgba(0, 0, 0, 0)"> ▲ </button>
-        </th>
-
-<!--eef-->
-        <th class="bg">Date</th>
-        <tbody id="leaderboard-body"></tbody>
-        </tr>
-    </table>
-
-
-
-    <div style="position:relative; display:flex; justify-content:space-evenly;">
-    <span style="border:solid red 1px; width:45%">
-        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="position: relative;">
-            <input type="number" name="PageIdx" id="Input-Page-Idx" value="1" style="width: 20%;"> 
-            <input type="submit" name="SortByPage" id="SortByInputPage-Button">
-        </form>
-</span>
-
-        <div style="position:relative; margin-right:auto;">
-            <button id="Index-Minus-Leaderboard">
-                ◀ </button>
-                    <button id="Index-Plus-Leaderboard"> ▶ </button>
+<body>
+    <div class="wrapper">
+        <div id="top-left">
+            <!--tableau-->
+            <table border="1" cellpadding="10" cellspacing="0">
+                <!--tr represent a row of a table-->
+                <tr>
+                    <!--th represent an header cell-->
+                    <th></th>
+                    <th>monday</th>
+                    <th colspan="2">tuesday</th>
+                    <th>wednesday</th>
+                    <th>thursday</th>
+                    <th>friday</th>
+                </tr>
+                <!--second row-->
+                <tr>
+                    <td rowspan="3"> pool</td>
+                    <td>swim</td>
+                    <td>running</td>
+                    <td>walking</td>
+                    <td>acrobatic</td>
+                    <td>flying</td>
+                    <td>random thing</td>
+                </tr>
+                <tr>
+                    <td>swim</td>
+                    <td>running</td>
+                    <td>walking</td>
+                    <td>acrobatic</td>
+                    <td>flying</td>
+                    <td>random thing</td>
+                </tr>
+                <tr>
+                    <td>swim</td>
+                    <td>running</td>
+                    <td>walking</td>
+                    <td>acrobatic</td>
+                    <td>flying</td>
+                    <td>random thing</td>
+                </tr>
+            </table>
         </div>
-        page 1
+
+        <div id="top-right">
+
+            <!--container-->
+            <div class="LeaderboardBox">
+
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="top: 100px; display:flex">
+                    <input type="text" name="username" id="username" placeholder="username to search"><br>
+                    <input type="hidden" name="ActionName" value="SortingByName">
+                    <input type="submit" name="SortByName" value="Sort" id="SortByUsername-button"><br>
+                </form>
+
+                <table class="LeaderboardMainMenu" cellpadding="15" cellspacing="0" style="color: blue;">
+                    <caption>
+                        Leaderboard
+                    </caption>
+                    <tr>
+                        <th class="bg">#</th>
+                        <th class="bg" style="width: 250px;" align="left">Player</th>
+                        <th class="bg" id="sort-time">
+                            Time
+                            <button id="SortByScore-button" method="post" style="display: inline; background-color: rgba(0, 0, 0, 0); border : rgba(0, 0, 0, 0)"> ▲ </button>
+                        </th>
+
+                        <!--eef-->
+                        <th class="bg">Date</th>
+                        <tbody id="leaderboard-body"></tbody>
+                    </tr>
+                </table>
+
+                <div style="position:relative; display:flex; justify-content:space-evenly;">
+                    <span style="width:45%">
+                        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="position: relative;">
+                            <input type="number" name="PageIdx" id="Input-Page-Idx" value="1" style="width: 20%;">
+                            <input type="submit" name="SortByPage" id="SortByInputPage-Button">
+                        </form>
+                    </span>
+
+                    <div style="position:relative; margin-right:auto;">
+                        <button id="Index-Minus-Leaderboard">
+                            ◀ </button>
+                        <button id="Index-Plus-Leaderboard"> ▶ </button>
+                    </div>
+                    <div id="page-number">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="bottom-center">
+
+            <a target="_blank" href="BuildBB/GamePage.php"> <img src="Start_ui_def.png" alt=""></a>
+        </div>
     </div>
-</div>
 
 
+    <script>
+        const pageNbr = document.getElementById("page-number");
+        let maxPage = undefined;
+        const maxElementPerPage = 5;
+        let page = 1;
+        let reverseSort = Boolean(false);
+        ActualisePageNumber();
+        InitScriptData();
 
-<div class="container" contenteditable="false">
-    <main class="content" contenteditable="false"></main>
+        function ActualisePageNumber() {
+            pageNbr.textContent = "Page " + page;
+        }
 
-    <footer contenteditable="false"></footer>
+        function RetrieveSortButton() {
+            // Sorting Page related
+            const SortButtonMinus = document.getElementById("Index-Minus-Leaderboard");
+            SortButtonMinus.addEventListener("click", (event) => {
+                if (page === 1) {
+                    return;
+                }
+                page--;
+                ActualisePageNumber();
+                FetchData(inputText.value.toLowerCase(), reverseSort);
+            });
+            const SortButtonPlus = document.getElementById("Index-Plus-Leaderboard");
+            SortButtonPlus.addEventListener("click", (event) => {
+                if (page === maxPage) {
+                    return;
+                }
+                page++;
+                ActualisePageNumber();
+                console.log(page);
+                FetchData(inputText.value.toLowerCase(), reverseSort);
+            });
+            const SortButtonScore = document.getElementById("SortByScore-button");
+            SortButtonScore.addEventListener("click", (event) => {
+                let currentOrientation = SortButtonScore.innerText
+                reverseSort = !reverseSort;
+                SortButtonScore.innerText = (currentOrientation === "▲") ? "▼" : "▲";
+                console.log(SortButtonScore.innerText);
+                FetchData(inputText.value.toLowerCase(), reverseSort);
+            });
 
-</div>
+            const SortNameButton = document.getElementById("SortByUsername-button");
+            const inputText = document.getElementById("username");
+            SortNameButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                FetchData(inputText.value.toLowerCase(), reverseSort);
+                //console.log(inputText.value);
+            });
 
-<script>
-    let maxPage = undefined;
-    const maxElementPerPage = 3;
-    let page = 1;
-    let reverseSort = Boolean(false);
+            const SortPageButton = document.getElementById("SortByInputPage-Button");
+            const inputPageIndex = document.getElementById("Input-Page-Idx");
+            SortPageButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                page = parseInt(inputPageIndex.value);
+                if (page > maxPage) {
+                    page = maxPage;
+                }
+                if (page < 1) {
+                    page = 1;
+                }
+                inputPageIndex.value = page;
+                FetchData(inputText.value.toLowerCase(), reverseSort);
+            });
+        }
 
-    function RetrieveSortButton() {
-        const SortButtonMinus = document.getElementById("Index-Minus-Leaderboard");
-        SortButtonMinus.addEventListener("click", (event) => {
-            if (page === 1) {
+        async function FetchData(input, reverse) {
+            //console.log(input);
+            try {
+                const response = await fetch("Fetch_leaderboard.php");
+                if (!response.ok) {
+                    throw new Error("could not fetch ressource");
+                }
+                let finalArray = new Array();
+                const data = await response.json();
+
+                if (input != undefined) {
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].username.toLowerCase().includes(input)) {
+                            finalArray.push(data[i]);
+                        }
+                    }
+                } else {
+                    finalArray = data;
+                }
+                if (maxPage === undefined) {
+                    maxPage = Math.ceil(finalArray.length / maxElementPerPage);
+                    console.log(maxPage);
+                }
+
+                const start = (page - 1) * maxElementPerPage; // At Page 1 -> 0
+                const end = start + maxElementPerPage; //  At Page 1 -> 0 + maxElementPerPage -> elem 1 - 2 - 3
+                const sliced = finalArray.slice(start, end);
+                if (reverse) {
+                    sliced.reverse();
+                }
+                DisplayLeaderboard(sliced);
+                sliced.forEach(element => {
+                    console.log(element.username);
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        function DisplayLeaderboard(data) {
+            if (data.length === 0) {
+                leaderboardBody.innerHTML = `<tr><td class="bg" colspan='4'>Aucun résultat</td></tr>`;
                 return;
             }
-            page--;
-            FetchData(inputText.value.toLowerCase(), reverseSort);
-        });
-        const SortButtonPlus = document.getElementById("Index-Plus-Leaderboard");
-        SortButtonPlus.addEventListener("click", (event) => {
-            page++;
-            console.log(page);
-            FetchData(inputText.value.toLowerCase(), reverseSort);
-        });
-        const SortButtonScore = document.getElementById("SortByScore-button");
-        SortButtonScore.addEventListener("click", (event) => {
-            let currentOrientation = SortButtonScore.innerText
-            reverseSort = !reverseSort;
-            SortButtonScore.innerText = (currentOrientation === "▲") ? "▼" : "▲";
-            console.log(SortButtonScore.innerText);
-            FetchData(inputText.value.toLowerCase(), reverseSort);
-        });
-
-        const SortNameButton = document.getElementById("SortByUsername-button");
-        const inputText = document.getElementById("username");
-        SortNameButton.addEventListener("click", (event) => {
-            event.preventDefault();
-            FetchData(inputText.value.toLowerCase(), reverseSort);
-            //console.log(inputText.value);
-        });
-
-        const SortPageButton = document.getElementById("SortByInputPage-Button");
-        const inputPageIndex = document.getElementById("Input-Page-Idx");
-        SortPageButton.addEventListener("click", (event) => {
-            event.preventDefault();
-            page = parseInt(inputPageIndex.value);
-            if (page > maxPage) {
-                page = maxPage;
-            }
-            if (page < 1) {
-                page = 1;
-            }
-            inputPageIndex.value = page;
-            FetchData(inputText.value.toLowerCase(), reverseSort);
-        });
-    }
-
-    async function FetchData(input, reverse) {
-        //console.log(input);
-        try {
-            const response = await fetch("Fetch_leaderboard.php");
-            if (!response.ok) {
-                throw new Error("could not fetch ressource");
-            }
-            let finalArray = new Array();
-            const data = await response.json();
-
-            if (input != undefined) {
-                for (i = 0; i < data.length; i++) {
-                    if (data[i].username.toLowerCase().includes(input)) {
-                        finalArray.push(data[i]);
-                    }
-                }
-            } else {
-                finalArray = data;
-            }
-            if (maxPage === undefined) {
-                maxPage = Math.ceil(finalArray.length / maxElementPerPage);
-                console.log(maxPage);
-            }
-
-            const start = (page - 1) * maxElementPerPage; // At Page 1 -> 0
-            const end = start + maxElementPerPage; //  At Page 1 -> 0 + maxElementPerPage -> elem 1 - 2 - 3
-            const sliced = finalArray.slice(start, end);
-            if (reverse) {
-                sliced.reverse();
-            }
-            DisplayLeaderboard(sliced);
-            sliced.forEach(element => {
-                console.log(element.username);
-            });
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    function DisplayLeaderboard(data) {
-        if (data.length === 0) {
-            leaderboardBody.innerHTML = `<tr><td class="bg" colspan='4'>Aucun résultat</td></tr>`;
-            return;
-        }
-        let leaderboard = null;
-        leaderboardBody = document.getElementById("leaderboard-body");
-        // Prevent duplicate
-        leaderboardBody.innerHTML = "";
-        for (i = 0; i < data.length; i++) {
-            row =
-                `<tr><td class="bg">${data[i].rank}</td>
+            let leaderboard = null;
+            leaderboardBody = document.getElementById("leaderboard-body");
+            // Prevent duplicate
+            leaderboardBody.innerHTML = "";
+            for (i = 0; i < data.length; i++) {
+                row =
+                    `<tr><td class="bg">${data[i].rank}</td>
             <td class="bg">${data[i].username}</td>
             <td class="bg">${data[i].score}</td>
              <td class="bg">${data[i].date}</td></tr>`
-            leaderboardBody.innerHTML += row;
+                leaderboardBody.innerHTML += row;
+            }
         }
-    }
 
-    function InitScriptData() {
-        RetrieveSortButton();
-        FetchData();
-    }
-    InitScriptData();
-</script>
+        function InitScriptData() {
+            RetrieveSortButton();
+            FetchData();
+        }
+    </script>
 
 </body>
 

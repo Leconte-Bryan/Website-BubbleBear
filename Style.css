@@ -1,11 +1,76 @@
-body {
+/*body{
+  width:100%;
+  min-height:100%;
   margin: 0px;
   background: #353535;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  /*display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 25% 25% 25%;
+  grid-template-areas: "top-left bottom-center top-right";
+  */
+/*place-items: center;
+}*/
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0px;
+  background: #353535;
   display: grid;
-  place-items: center;
+  /*place-items: center;*/
 }
+
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "top-left top-right"
+    "bottom-center bottom-center";
+  border: solid white 5px;
+  grid-template-rows: 75vh auto;
+}
+
+#top-left {
+  display: grid;
+  place-content: center;
+  grid-area: top-left;
+  box-sizing: border-box;
+}
+
+#top-right {
+  display: grid;
+  place-content: center;
+  grid-area: top-right;
+  box-sizing: border-box;
+}
+
+#bottom-center {
+  display:flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center; /* centre verticalement */
+  grid-area: bottom-center;
+  border: solid blue 2px;
+  display: grid;
+  grid-area: bottom-center;
+  place-content: center;
+  background: #6a2893;
+  border: solid black 1px;
+  border-radius: 1px;
+  box-shadow: 0px 0px 15px #3e1558;
+}
+
+/*
+#bottom-center {
+  grid-area: bottom-center;
+  place-content: center;
+  background: #6a2893;
+  border: solid black 1px;
+  border-radius: 1px;
+  box-shadow:  0px 0px 15px #3e1558;
+}
+*/
 
 .container {
   display: flex;
@@ -101,9 +166,6 @@ h2 {
   margin-top: 10px;
 }
 
-
-
-
 .HeaderMainMenu {
   background: #ad67d9;
   position: fixed;
@@ -117,11 +179,10 @@ h2 {
   box-sizing: border-box;
   z-index: 1000;
   justify-content: center;
-
 }
 
 /* box dans laquelle se trouve les icones */
-.Logo-Header{
+.Logo-Header {
   display: inline;
   margin-right: auto;
   margin-top: 1%;
@@ -129,7 +190,6 @@ h2 {
   width: 500px;
   /*background-color: #008cff;*/
 }
-
 
 .MainTitle {
   max-height: 120px;
@@ -145,24 +205,24 @@ h2 {
   height: 120px;
 }
 
-
-.Play-Hyperlink{
-  position:absolute;
-  display: flex;
-  height: 100px;
+.bottom-center,
+img {
+  /*border: solid rgb(170, 255, 0) 1px;*/
+  height: 5vh;
+  width: 10vw;
   scale: 1.5;
   animation-duration: 3s;
   animation-name: expand;
   animation-iteration-count: infinite;
 }
-@keyframes expand{
-  0%{
 
+@keyframes expand {
+  0% {
   }
-  30%{
-    scale:3;
+  30% {
+    scale: 3;
   }
-  100%{
+  100% {
   }
 }
 /* nav menu */
@@ -174,15 +234,13 @@ h2 {
   border-radius: 8px;
 }
 
-
-
 .NavMainMenu ul {
   justify-content: space-between;
 }
 
 .NavMainMenu ul li {
   display: inline-block;
-  list-style:none;
+  list-style: none;
   margin: 0 20px;
 }
 
@@ -196,14 +254,10 @@ h2 {
   color: black;
 }
 
-
-
-
-
 /*global box leaderboard*/
-.LeaderboardBox{
+.LeaderboardBox {
   position: relative;
-  top: 150px;
+  /*top: 150px;*/
   /*
   border: solid red 2px;
   border-radius: 10px;
@@ -212,7 +266,6 @@ h2 {
 
 .LeaderboardMainMenu {
   position: relative;
-  /*top: 150px;*/
   border-collapse: separate;
   box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
   border: solid rgb(0, 0, 0) 1px;
@@ -221,8 +274,7 @@ h2 {
   border-bottom-right-radius: 8px;
 }
 
-
-table.LeaderboardMainMenu caption{
+table.LeaderboardMainMenu caption {
   caption-side: top;
   background-color: rgba(68, 20, 70, 0.285);
   box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
