@@ -1,0 +1,276 @@
+body {
+  margin: 0px;
+  background: #353535;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  height: 50px;
+  flex-shrink: 0;
+  background-color: #037cf5;
+}
+
+footer {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  left: 50%;
+  height: 100px;
+  flex-shrink: 0;
+  background-color: rgba(64, 20, 70, 0.285);
+  user-select: none;
+  pointer-events: none;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  color: rgb(255, 255, 255);
+}
+
+#general-login-box {
+  margin-top: 150px;
+  border: 5px;
+  width: 400px;
+  height: 400px;
+  background: rgb(255, 255, 255);
+  border-style: outset;
+  border-width: 2px;
+  border-radius: 5px;
+
+  display: grid;
+  place-items: center;
+}
+
+/*Text box for each authentification element*/
+#login-text-box {
+  width: 300px;
+  height: 40px;
+  background-color: white;
+  margin-top: 10px;
+}
+
+#login-button {
+  background-color: #1877f2;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  height: 60px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#register-button {
+  background-color: #00a410;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  height: 60px;
+  font-weight: bold;
+  width: 200px;
+}
+
+#register-button-2 {
+  background-color: #00a410;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  height: 60px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+
+
+.HeaderMainMenu {
+  background: #ad67d9;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem; /* Un peu d’espace sur les côtés */
+  box-sizing: border-box;
+  z-index: 1000;
+  justify-content: center;
+
+}
+
+/* box dans laquelle se trouve les icones */
+.Logo-Header{
+  display: inline;
+  margin-right: auto;
+  margin-top: 1%;
+  padding: 30px 0;
+  width: 500px;
+  /*background-color: #008cff;*/
+}
+
+
+.MainTitle {
+  max-height: 120px;
+  height: auto;
+  display: inline-block;
+  height: 120px;
+}
+
+.Logo-Img {
+  max-height: 120px;
+  height: auto;
+  display: inline-block;
+  height: 120px;
+}
+
+
+.Play-Hyperlink{
+  position:absolute;
+  display: flex;
+  height: 100px;
+  scale: 1.5;
+  animation-duration: 3s;
+  animation-name: expand;
+  animation-iteration-count: infinite;
+}
+@keyframes expand{
+  0%{
+
+  }
+  30%{
+    scale:3;
+  }
+  100%{
+  }
+}
+/* nav menu */
+.NavMainMenu {
+  display: flex;
+  gap: 2rem; /* espacement entre les liens du menu */
+  /*background-color: #ff00dd;*/
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+
+
+.NavMainMenu ul {
+  justify-content: space-between;
+}
+
+.NavMainMenu ul li {
+  display: inline-block;
+  list-style:none;
+  margin: 0 20px;
+}
+
+.NavMainMenu ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.NavMainMenu ul li button {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+/*global box leaderboard*/
+.LeaderboardBox{
+  position: relative;
+  top: 150px;
+  /*
+  border: solid red 2px;
+  border-radius: 10px;
+  */
+}
+
+.LeaderboardMainMenu {
+  position: relative;
+  /*top: 150px;*/
+  border-collapse: separate;
+  box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  border: solid rgb(0, 0, 0) 1px;
+  /*border-radius: 8px;*/
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+
+table.LeaderboardMainMenu caption{
+  caption-side: top;
+  background-color: rgba(68, 20, 70, 0.285);
+  box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  font-size: 24px;
+  padding: 10px;
+  color: white;
+  border: solid rgb(0, 0, 0) 1px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/*cell styling*/
+.bg {
+  background-color: rgba(68, 20, 70, 0.285);
+  color: #ffffff;
+  font-style: bold;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-color: rgba(64, 20, 70, 0.285);
+}
+
+.ButtonLoginMainMenu {
+  transition-duration: 0.4s;
+  color: rgb(255, 255, 255);
+  background-color: rgba(37, 0, 172, 0);
+  border-color: #ffffff00;
+  border-width: 20px;
+  border-radius: 8px;
+}
+
+.ButtonLoginMainMenu:hover {
+  background-color: rgba(255, 255, 255, 0.452);
+  color: rgb(255, 255, 255);
+  border-width: 20px;
+  border-radius: 8px;
+}
+
+.ButtonRegisterMainMenu {
+  color: rgba(255, 255, 255, 0);
+  background-color: rgb(255, 255, 255);
+  border-color: #ffffff00;
+  border-width: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.ButtonRegisterMainMenu:hover {
+  background-color: rgb(203, 203, 203);
+  border-width: 20px;
+  border-radius: 8px;
+}

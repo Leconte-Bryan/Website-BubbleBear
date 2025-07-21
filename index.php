@@ -1,0 +1,426 @@
+<?php
+include("init.php");
+include("Header.php");
+
+// Expose the sort order at the beginning 
+$sorting_by = $_POST["sort-order"];
+
+
+/**
+ * Display the leaderboard depending if sorted or not
+ * @param mixed $conn
+ * @param mixed $sorting_by // ASC OR DESC
+ * @return mysqli_result
+ */
+/*
+function DisplayLeaderboard($conn, $sorting_by): mysqli_result
+{
+    if (isset($_POST["sort-order"]) && $_POST["sort-order"] === "DESC") {
+        $sorting_by = 'DESC';
+    } else {
+        $sorting_by = 'ASC';
+    }
+
+    // If request correspond : sort depending of the entered name
+    if (isset($_POST['SortButton'])) {
+
+
+        // Crée table temporaire comme leaderboard mais avec une valeur supplémentaire : global_rank 
+        // global_rank est une valeur déterminée selon le score (meilleur score = 1, puis 2...)
+        // Ensuite sélectionne les lignes de cette table (récupèrent par la même occasion les ranks)
+        $sql = "WITH RankedLeaderboard AS (
+    SELECT 
+        username, 
+        score, 
+        game_date,
+        RANK() OVER (ORDER BY score ASC) AS global_rank
+    FROM leaderboard
+INNER JOIN users ON leaderboard.user_id = users.user_id 
+)
+SELECT * FROM RankedLeaderboard
+WHERE username LIKE ?
+ORDER BY score $sorting_by;";
+
+
+        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+        // Valide tout les username contenant l'entré et ayant une suite
+        $username = $username . '%';
+        // Prepare this specific request
+        $stmt = $conn->prepare($sql);
+        // first argument : data type (s = string), second = the value
+        $stmt->bind_param("s", $username);
+        // Execute the query
+        $stmt->execute();
+        // Get the result
+        return $result_DisplayLeaderboard = $stmt->get_result();
+        //If no entry
+    } else {
+        $sql_DisplayLeaderboard = "Select username, score, game_date, RANK() OVER (ORDER BY score ASC) AS global_rank
+FROM leaderboard INNER JOIN users
+On leaderboard.user_id = users.user_id
+ORDER BY score $sorting_by;";
+        return $result_DisplayLeaderboard = mysqli_query($conn, $sql_DisplayLeaderboard);
+    }
+}
+*/
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<header>HEADER</header>
+
+<!--container-->
+<div class="LeaderboardBox">
+        
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="top: 100px; display:flex">
+        <input type="text" name="username" id="username" placeholder="username to search"><br>
+        <input type="hidden" name="ActionName" value="SortingByName">
+        <input type="submit" name="SortByName" value="Sort" id="SortByUsername-button"><br>
+    </form>
+
+    <table class="LeaderboardMainMenu" cellpadding="10" cellspacing="0" style="color: blue;">
+        <caption>
+           Leaderboard 
+        </caption>
+        <tr>
+        <th class="bg">#</th>
+        <th class="bg" style="width: 200px;" align="left">Player</th>
+        <th class="bg" id="sort-time">
+            Time
+            <button id="SortByScore-button" method="post" style="display: inline; background-color: rgba(0, 0, 0, 0); border : rgba(0, 0, 0, 0)"> ▲ </button>
+        </th>
+
+<!--eef-->
+        <th class="bg">Date</th>
+        <tbody id="leaderboard-body"></tbody>
+        </tr>
+    </table>
+
+
+
+    <div style="position:relative; display:flex; justify-content:space-evenly;">
+    <span style="border:solid red 1px; width:45%">
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="position: relative;">
+            <input type="number" name="PageIdx" id="Input-Page-Idx" value="1" style="width: 20%;"> 
+            <input type="submit" name="SortByPage" id="SortByInputPage-Button">
+        </form>
+</span>
+
+        <div style="position:relative; margin-right:auto;">
+            <button id="Index-Minus-Leaderboard">
+                ◀ </button>
+                    <button id="Index-Plus-Leaderboard"> ▶ </button>
+        </div>
+        page 1
+    </div>
+</div>
+
+
+
+<div class="container" contenteditable="false">
+    <main class="content" contenteditable="false"></main>
+
+    <footer contenteditable="false"></footer>
+
+</div>
+
+<script>
+    let maxPage = undefined;
+    const maxElementPerPage = 3;
+    let page = 1;
+    let reverseSort = Boolean(false);
+
+    function RetrieveSortButton() {
+        const SortButtonMinus = document.getElementById("Index-Minus-Leaderboard");
+        SortButtonMinus.addEventListener("click", (event) => {
+            if (page === 1) {
+                return;
+            }
+            page--;
+            FetchData(inputText.value.toLowerCase(), reverseSort);
+        });
+        const SortButtonPlus = document.getElementById("Index-Plus-Leaderboard");
+        SortButtonPlus.addEventListener("click", (event) => {
+            page++;
+            console.log(page);
+            FetchData(inputText.value.toLowerCase(), reverseSort);
+        });
+        const SortButtonScore = document.getElementById("SortByScore-button");
+        SortButtonScore.addEventListener("click", (event) => {
+            let currentOrientation = SortButtonScore.innerText
+            reverseSort = !reverseSort;
+            SortButtonScore.innerText = (currentOrientation === "▲") ? "▼" : "▲";
+            console.log(SortButtonScore.innerText);
+            FetchData(inputText.value.toLowerCase(), reverseSort);
+        });
+
+        const SortNameButton = document.getElementById("SortByUsername-button");
+        const inputText = document.getElementById("username");
+        SortNameButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            FetchData(inputText.value.toLowerCase(), reverseSort);
+            //console.log(inputText.value);
+        });
+
+        const SortPageButton = document.getElementById("SortByInputPage-Button");
+        const inputPageIndex = document.getElementById("Input-Page-Idx");
+        SortPageButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            page = parseInt(inputPageIndex.value);
+            if (page > maxPage) {
+                page = maxPage;
+            }
+            if (page < 1) {
+                page = 1;
+            }
+            inputPageIndex.value = page;
+            FetchData(inputText.value.toLowerCase(), reverseSort);
+        });
+    }
+
+    async function FetchData(input, reverse) {
+        //console.log(input);
+        try {
+            const response = await fetch("Fetch_leaderboard.php");
+            if (!response.ok) {
+                throw new Error("could not fetch ressource");
+            }
+            let finalArray = new Array();
+            const data = await response.json();
+
+            if (input != undefined) {
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].username.toLowerCase().includes(input)) {
+                        finalArray.push(data[i]);
+                    }
+                }
+            } else {
+                finalArray = data;
+            }
+            if (maxPage === undefined) {
+                maxPage = Math.ceil(finalArray.length / maxElementPerPage);
+                console.log(maxPage);
+            }
+
+            const start = (page - 1) * maxElementPerPage; // At Page 1 -> 0
+            const end = start + maxElementPerPage; //  At Page 1 -> 0 + maxElementPerPage -> elem 1 - 2 - 3
+            const sliced = finalArray.slice(start, end);
+            if (reverse) {
+                sliced.reverse();
+            }
+            DisplayLeaderboard(sliced);
+            sliced.forEach(element => {
+                console.log(element.username);
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function DisplayLeaderboard(data) {
+        if (data.length === 0) {
+            leaderboardBody.innerHTML = `<tr><td class="bg" colspan='4'>Aucun résultat</td></tr>`;
+            return;
+        }
+        let leaderboard = null;
+        leaderboardBody = document.getElementById("leaderboard-body");
+        // Prevent duplicate
+        leaderboardBody.innerHTML = "";
+        for (i = 0; i < data.length; i++) {
+            row =
+                `<tr><td class="bg">${data[i].rank}</td>
+            <td class="bg">${data[i].username}</td>
+            <td class="bg">${data[i].score}</td>
+             <td class="bg">${data[i].date}</td></tr>`
+            leaderboardBody.innerHTML += row;
+        }
+    }
+
+    function InitScriptData() {
+        RetrieveSortButton();
+        FetchData();
+    }
+    InitScriptData();
+</script>
+
+</body>
+
+</html>
+
+<?php
+// Debug
+//echo $_SESSION["username"] . "<br>";
+//echo $_SESSION["password"] . "<br>";
+//echo $_SESSION["email"] . "<br>";
+/*if (isset($_SESSION["user_id"])) {
+    echo $_SESSION["user_id"] . "<br>";
+    echo gettype($_SESSION["user_id"]) . "<br>";
+} */
+
+/**
+ * Function called when player finish a run and set his score in the database
+ * @param mixed $connexion
+ * @return void
+ */
+function SettingScore($connexion)
+{
+    // Récupère le score
+    $score = $_POST['score'];
+    // Debug
+    /*echo 'something + ' . $score . "<br>";
+        echo $_SESSION["user_id"] . "<br>";
+        */
+    // Check if user already scored
+    try {
+        $sql_Select = "SELECT * FROM leaderboard WHERE user_id = ?";
+        $stmt_Select = $connexion->prepare($sql_Select);
+        $stmt_Select->bind_param("i", $_SESSION["user_id"]);
+        $stmt_Select->execute();
+        $result_Select = $stmt_Select->get_result();
+        $user_Select = $result_Select->fetch_assoc();
+
+        echo "le score initial du joueur " . $user_Select["score"] . "<br>";
+        // If scored, and it did a better score (it's time so the new score is smaller)
+        if ($result_Select->num_rows > 0) {
+
+            $stmt_Select->close();
+            $InitialTime = new DateTime($user_Select["score"]);
+            $NewTime = new DateTime($score);
+            if ($InitialTime > $NewTime) {
+                echo "The Player just did a new record ! " . "<br>";
+                $val = $_SESSION["user_id"];
+
+                $sql_Alter = "UPDATE leaderboard SET score = ? WHERE user_id = ?";
+                $stmt_Alter  = $connexion->prepare($sql_Alter);
+                $stmt_Alter->bind_param("si", $score, $_SESSION["user_id"]);
+                $stmt_Alter->execute();
+                $stmt_Alter->close();
+                mysqli_close($connexion);
+                exit(0);
+            }
+        }
+    } catch (mysqli_sql_exception $e) {
+        echo "error during score modification" . $e->getMessage() . "<br>";
+    }
+
+    try {
+        $sql = "INSERT INTO leaderboard (user_id, score) 
+				VALUES(?, ?)";
+        $stmt = $connexion->prepare($sql);
+        // first argument : data type (s = string), second = the value
+        // Type int et string
+        $stmt->bind_param("is", $_SESSION["user_id"], $score);
+        // Execute the query
+        $stmt->execute();
+    } catch (mysqli_sql_exception $e) {
+        echo "error during score insertion" . $e->getMessage() . "<br>";
+    }
+
+    if (isset($stmt)) {
+        $stmt->close();
+    }
+    mysqli_close($connexion);
+}
+
+
+// Check si connecté, si oui rentre info dans base de donnée
+if (isset($_SESSION["user_id"])) {
+
+    if (isset($_POST['score'])) {
+
+        SettingScore($conn);
+        /*
+        // Récupère le score
+        $score = $_POST['score'];
+
+        try {
+            $sql_Select = "SELECT * FROM leaderboard WHERE user_id = ?";
+            $stmt_Select = $conn->prepare($sql_Select);
+            $stmt_Select->bind_param("i", $_SESSION["user_id"]);
+            $stmt_Select->execute();
+            $result_Select = $stmt_Select->get_result();
+            $user_Select = $result_Select->fetch_assoc();
+
+            echo "le score initial du joueur " . $user_Select["score"] . "<br>";
+            if ($result_Select->num_rows > 0) {
+
+                $stmt_Select->close();
+                $InitialTime = new DateTime($user_Select["score"]);
+                $NewTime = new DateTime($score);
+                if ($InitialTime > $NewTime) {
+                    echo "The Player just did a new record ! " . "<br>";
+                    $val = $_SESSION["user_id"];
+
+                    $sql_Alter = "UPDATE leaderboard SET score = ? WHERE user_id = ?";
+                    $stmt_Alter  = $conn->prepare($sql_Alter);
+                    $stmt_Alter->bind_param("si", $score, $_SESSION["user_id"]);
+                    $stmt_Alter->execute();
+                    $stmt_Alter->close();
+                    mysqli_close($conn);
+                    exit(0);
+                }
+            }
+        } catch (mysqli_sql_exception $e) {
+            echo "error during score modification" . $e->getMessage() . "<br>";
+        }
+
+        try {
+            $sql = "INSERT INTO leaderboard (user_id, score) 
+				VALUES(?, ?)";
+            $stmt = $conn->prepare($sql);
+       
+            $stmt->bind_param("is", $_SESSION["user_id"], $score);
+            
+            $stmt->execute();
+        } catch (mysqli_sql_exception $e) {
+            echo "error during score insertion" . $e->getMessage() . "<br>";
+        }
+
+        if (isset($stmt)) {
+            $stmt->close();
+        }
+        mysqli_close($conn);
+
+        */
+    }
+    // If request correspond : sort depending of the entered name
+    if (isset($_POST['SortingByName'])) {
+        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+        // Valide tout les username contenant l'entré et ayant une suite
+        $username = $username . '%';
+        // Valide tout les usernames sans se préocupé de lowercase etc...
+        $sql = "SELECT * FROM users WHERE username LIKE ?";
+
+        // Prepare this specific request
+        $stmt = $conn->prepare($sql);
+        // first argument : data type (s = string), second = the value
+        $stmt->bind_param("s", $username);
+        // Execute the query
+        $stmt->execute();
+        // Get the result
+        $result = $stmt->get_result();
+
+        while ($user = mysqli_fetch_array($result)) {
+            return;
+        }
+    }
+}
+
+// If there is an acitve session, Log out the user and then redirect him somewhere
+if (isset($_POST["logout"]) && $_SESSION != null) {
+    session_destroy();
+    header("location: login.php");
+} else {
+    //debug
+    //echo "unable to logout";
+}
+
+
+?>
