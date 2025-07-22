@@ -9,20 +9,9 @@
 </head>
 
 <body>
-    <!-- Container -->
-    <div class="HeaderMainMenu">
-
-        <!-- nav base -->
-        <!-- image container -->
-        <div class="Logo-Header">
-            <a href="index.php">
-                <img class="MainTitle" src="BubbleBeartitle.png" alt=""></a>
-            <img class="Logo-Img" src="OURS.png">
-
-        </div>
-        <a class="Play-Hyperlink" target="_blank" href="BuildBB/GamePage.php"> <img src="Start_ui.png" alt=""></a>
+        <header>
         <nav class="NavMainMenu">
-
+            Le nom du site
             <ul>
                 <?php if (isset($_SESSION['username'])): ?>
                     <li><a href="LogOut.php"> <button class="ButtonRegisterMainMenu"> Logout </button> </a></li>
@@ -33,7 +22,7 @@
                 <?php endif; ?>
             </ul>
         </nav>
-    </div>
+    </header>
 </body>
 
 </html>

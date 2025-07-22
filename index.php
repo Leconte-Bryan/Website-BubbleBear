@@ -1,5 +1,6 @@
 <?php
 include("init.php");
+include("Header.php");
 ?>
 
 <!DOCTYPE html>
@@ -12,20 +13,33 @@ include("init.php");
     <link rel="stylesheet" href="Style.css">
 </head>
 
-<body>
-    <div class="wrapper">
-        <div id="top-left">
-            <img class="game-icone" src="Main_img_BubleBear.jpg" alt="">
-            <table class="game-data">
-                <tr><th class="bg">Title : BubbleBear </th></tr>
-                <tr><th class="bg">Type :  Speedrun </th></tr>
-                <tr><th class="bg">Recommended age : 7 </th></tr>
-                <tr><th class="bg">Command Type : Mouse </th></tr>
-                <tr><th class="bg">Released date : 28/01/2025 </th></tr>
-                
-            </table>
-        </div>
+<body class="body-BubbleBear">
 
+    <div class="wrapper">
+
+        <div id="top-left">
+            <div id="container-game-data">
+                <img class="game-icone" src="Main_img_BubleBear.jpg" alt="">
+                <table class="game-data" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <th class="bg">Title : BubbleBear </th>
+                    </tr>
+                    <tr>
+                        <th class="bg">Type : Speedrun </th>
+                    </tr>
+                    <tr>
+                        <th class="bg">Recommended age : 7 </th>
+                    </tr>
+                    <tr>
+                        <th class="bg">Command Type : Mouse </th>
+                    </tr>
+                    <tr>
+                        <th class="bg">Released date : 28/01/2025 </th>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
         <div id="top-right">
 
             <!--container-->
@@ -80,7 +94,11 @@ include("init.php");
         </div>
     </div>
 
+    <?php
+    include("Footer.php");
+    ?>
 
+ 
     <script>
         const pageNbr = document.getElementById("page-number");
         let maxPage = undefined;
@@ -197,8 +215,27 @@ include("init.php");
             // Prevent duplicate
             leaderboardBody.innerHTML = "";
             for (i = 0; i < data.length; i++) {
+                let rankInt = parseInt(data[i].rank);
+                firstRow = `<tr><td class="bg">${data[i].rank}</td>`;
+                console.log(firstRow);
+
+                // Podium
+                if (rankInt <= 3) {
+                    if (rankInt === 1) {
+                        firstRow =
+                            `<tr><td class="bg" style="color:gold;">${data[i].rank}</td>`
+                    }
+                    if (rankInt === 2) {
+                        firstRow =
+                            `<tr><td class="bg" style="color:silver;">${data[i].rank}</td>`
+                    }
+                    if (rankInt === 3) {
+                        firstRow =
+                            `<tr><td class="bg" style="color:#b1560F;">${data[i].rank}</td>`
+                    }
+                }
                 row =
-                    `<tr><td class="bg">${data[i].rank}</td>
+                    `${firstRow}
             <td class="bg">${data[i].username}</td>
             <td class="bg">${data[i].score}</td>
              <td class="bg">${data[i].date}</td></tr>`

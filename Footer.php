@@ -7,9 +7,17 @@
 </head>
 <body>
     <footer>
-
-
+        <nav padding="15px">
+            <ul class="headline">Explore</ul>
+            <ul><a href="https://bryanlesc.itch.io/bubble-bear">Itch.io</a></ul>
+            <ul><a href="About.php">About</a></ul>
+        </nav>
+        <nav padding="15px">
+            <ul class="headline">Learn</ul>
+            <ul><a href=>Privacy</a></ul>
+            <ul><a href=>Cookie settings</a></ul>
+            <ul><a href=>Terms</a></ul>
+        </nav>
     </footer>
-
 </body>
 </html>

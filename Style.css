@@ -1,26 +1,36 @@
-/*body{
-  width:100%;
-  min-height:100%;
-  margin: 0px;
-  background: #353535;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /*display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 25% 25% 25%;
-  grid-template-areas: "top-left bottom-center top-right";
-  */
-/*place-items: center;
-}*/
+:root {
+  --header-footer-bg-color: rgba(64, 20, 70, 0.5);
+  --main-bg-color: #353535;
+  --cell-bg-color: rgba(68, 20, 70, 1);
 
-html,
-body {
+  --podium-first-color: gold;
+  --podium-second-color: silver;
+  --podium-third-color: #b1560f;
+
+  /*--cell-bg-color: rgba(68, 20, 70, 0.285);*/
+}
+
+.body-login-register {
   width: 100%;
+  height: 100%;
   min-height: 100%;
   margin: 0px;
   background: #353535;
   display: grid;
+  place-items: center;
+}
+
+
+.body-BubbleBear {
+  background-image: url("Illus_intro.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  min-height: 100%;
+  margin: 0px;
+  display: grid;
   /*place-items: center;*/
+  z-index: -5;
 }
 
 .wrapper {
@@ -28,8 +38,8 @@ body {
   grid-template-areas:
     "top-left top-right"
     "bottom-center bottom-center";
-  border: solid white 5px;
   grid-template-rows: 75vh auto;
+  /*border: solid white 5px;*/
 }
 
 /* 
@@ -40,14 +50,26 @@ body {
   place-content: center;
   grid-area: top-left;
   box-sizing: border-box;
-
 }
 
-.game-icone{
-  height: 25vh;
+#container-game-data {
+  box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  border: solid rgb(0, 0, 0) 1px;
+  overflow: auto;
+  border-radius: 8px;
   width: 25vw;
-  /*border: solid red 3px;*/
+  height: auto;
 }
+
+.game-icone {
+  height: 25vh;
+  width: inherit;
+}
+
+.game-data {
+  width: 100%;
+}
+
 /* 
 * Leaderboard
 */
@@ -62,43 +84,47 @@ body {
 * Play
 */
 #bottom-center {
-  display:flex;
+  display: flex;
   justify-content: center; /* centre horizontalement */
   align-items: center; /* centre verticalement */
   grid-area: bottom-center;
   border: solid blue 2px;
   display: grid;
+  width: 33%;
+  margin-left: 33%;
+  margin-right: 33%;
   grid-area: bottom-center;
   place-content: center;
   background: #6a2893;
   border: solid black 1px;
   border-radius: 1px;
   box-shadow: 0px 0px 15px #3e1558;
+  min-height: 25vh;
 }
 
+footer {
+  bottom: 0;
+  display: flex;
+  place-content: center;
+  width: 100%;
+  height: auto;
+  background-color: var(--header-footer-bg-color);
+  z-index: 5;
+}
+
+header {
+  display: flex;
+  margin-right: 25%;
+  margin-left: 25%;
+  height: auto;
+  flex-shrink: 0;
+  background-color: var(--header-footer-bg-color);
+}
 
 .container {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-header {
-  height: 50px;
-  flex-shrink: 0;
-  background-color: #037cf5;
-}
-
-footer {
-  width: 100vw;
-  position: relative;
-  margin-left: -50vw;
-  left: 50%;
-  height: 100px;
-  flex-shrink: 0;
-  background-color: rgba(64, 20, 70, 0.285);
-  user-select: none;
-  pointer-events: none;
 }
 
 main {
@@ -114,7 +140,7 @@ h2 {
 }
 
 #general-login-box {
-  margin-top: 150px;
+  margin-top: 10%;
   border: 5px;
   width: 400px;
   height: 400px;
@@ -125,7 +151,26 @@ h2 {
 
   display: grid;
   place-items: center;
+  margin-bottom: 10%;
 }
+
+#general-login-box a:link {
+  color: rgb(88, 94, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+#general-login-box a:visited {
+  color: rgb(88, 94, 255);
+  background-color: transparent;
+  text-decoration: none;
+}
+#general-login-box a:hover {
+  color: rgb(0, 8, 255);;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+
 
 /*Text box for each authentification element*/
 #login-text-box {
@@ -147,6 +192,12 @@ h2 {
   margin-top: 10px;
 }
 
+
+
+#login-button:hover{
+  background-color: #084594;
+}
+
 #register-button {
   background-color: #00a410;
   color: white;
@@ -157,6 +208,10 @@ h2 {
   height: 60px;
   font-weight: bold;
   width: 200px;
+}
+
+#register-button:hover{
+  background-color: #00740c;
 }
 
 #register-button-2 {
@@ -212,8 +267,8 @@ h2 {
 
 .button-play {
   /*border: solid rgb(170, 255, 0) 1px;*/
-  height: 5vh;
-  width: 10vw;
+  height: 3vh;
+  width: 6vw;
   scale: 1.5;
   animation-duration: 3s;
   animation-name: expand;
@@ -280,7 +335,7 @@ h2 {
 
 table.LeaderboardMainMenu caption {
   caption-side: top;
-  background-color: rgba(68, 20, 70, 0.285);
+  background-color: var(--cell-bg-color);
   box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
   font-size: 24px;
   padding: 10px;
@@ -292,8 +347,8 @@ table.LeaderboardMainMenu caption {
 
 /*cell styling*/
 .bg {
-  background-color: rgba(68, 20, 70, 0.285);
-  color: #ffffff;
+  background-color: var(--cell-bg-color);
+  color: white;
   font-style: bold;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
@@ -301,7 +356,8 @@ table.LeaderboardMainMenu caption {
 }
 
 .ButtonLoginMainMenu {
-  transition-duration: 0.4s;
+  --duration: 0.4s;
+  transition-duration: var(--duration);
   color: rgb(255, 255, 255);
   background-color: rgba(37, 0, 172, 0);
   border-color: #ffffff00;
@@ -329,4 +385,25 @@ table.LeaderboardMainMenu caption {
   background-color: rgb(203, 203, 203);
   border-width: 20px;
   border-radius: 8px;
+}
+
+footer a:link {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+footer a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+footer a:hover {
+  color: rgb(255, 124, 146);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.headline {
+  color: #ffffff;
+  font-weight: bold;
 }

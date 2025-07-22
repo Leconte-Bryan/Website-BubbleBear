@@ -13,10 +13,10 @@ include("init.php");
     <!--To Use css style-->
     <link rel="stylesheet" href="Style.css">
     <title>Document</title>
+    <link rel="stylesheet" href="Style.css">
 </head>
 
-<body>
-
+<body class="body-login-register">
     <div id="general-login-box">
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
             <!--authentification-->
@@ -41,7 +41,9 @@ include("init.php");
         <a href="index.php"> This goes to the main page Page</a>
         <br>
     </div>
-
+    <?php
+    include("Footer.php");
+    ?>
 </body>
 
 
@@ -111,11 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "username or password or email is invalid" . "<br>";
                 exit;
             }
-
-
         } catch (mysqli_sql_exception $e) {
             echo "" . $e->getMessage() . "<br>";
-            echo "". $e->getCode() ."" ."<br>";
+            echo "" . $e->getCode() . "" . "<br>";
             echo "failed register attempt";
         }
     }

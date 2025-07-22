@@ -11,7 +11,7 @@ include("init.php");
 	<title>Document</title>
 </head>
 
-<body>
+<body class="body-login-register">
 
 	<div id="general-login-box">
 		<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
@@ -23,23 +23,11 @@ include("init.php");
 			<input type="submit" name="register" value="register" id="register-button-2">
 
 		</form>
-
-		<!--
-		<label>username:</label><br>
-		<input type="text" name="username"><br>
-		<label>password</label><br>
-		<input type="password" name="password"><br>
-		<label>email</label><br>
-		<input type="password_check" name="password_check"><br>
-		<label>email</label><br>
-		<input type="email" name="email"><br>
-		<input type="submit" name="register" value="register">
-
-	</form>
-		-->
-
 		<a href="login.php"> This goes to the login page</a>
 	</div>
+	<?php
+	include("Footer.php");
+	?>
 </body>
 
 </html>
@@ -75,16 +63,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Check if field empty
 	if (empty($username)) {
 		echo "username is missing";
-		       exit(0);
+		exit(0);
 	} else if (empty($password)) {
 		echo "password is missing";
-		       exit(0);
+		exit(0);
 	} else if ($password != $password_check) {
 		echo "not the same password !";
-		       exit(0);
+		exit(0);
 	} else if (empty($email)) {
 		echo "That email is invalid";
-		       exit(0);
+		exit(0);
 	} else {
 
 
@@ -95,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				VALUES('$username', '$hash', '$email')";*/
 		try {
 
-			
+
 			// Template of the request
 			$sql = "INSERT INTO users (username, password_hash, email) 
 				VALUES(?, ?, ?)";
@@ -105,30 +93,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$stmt->bind_param("sss", $username, $hash, $hash_mail);
 			// Execute the query
 			$stmt->execute();
-		} 
-		catch (mysqli_sql_exception $e)
-		{
+		} catch (mysqli_sql_exception $e) {
 			// Constraint unique baffouée
-			if($e->getCode() == 1062){
+			if ($e->getCode() == 1062) {
 				//stripos argument : String to search in, then the string we search
 				// The exception contain the field username or email, so we check inside the exception
-				if(stripos($e->getMessage(), "username")){
-				echo "This username is already taken" ."<br>";
+				if (stripos($e->getMessage(), "username")) {
+					echo "This username is already taken" . "<br>";
 				}
-				if(stripos($e->getMessage(), "email")){
-				echo "This email is already taken" ."<br>";
+				if (stripos($e->getMessage(), "email")) {
+					echo "This email is already taken" . "<br>";
 				}
 			}
 			// Constraint chk_username_lenght
-			if($e->getCode() == 4025){
-				echo "username must be between 7 and 15 characters" ."<br>";
+			if ($e->getCode() == 4025) {
+				echo "username must be between 7 and 15 characters" . "<br>";
 			}
-			
+
 			//Display the error
-			 echo "". $e->getMessage() ."" ."<br>";
-			 echo "". $e->getCode() ."" ."<br>";
-			 echo "failed register attempt" ."<br>";
-			 exit(0);
+			echo "" . $e->getMessage() . "" . "<br>";
+			echo "" . $e->getCode() . "" . "<br>";
+			echo "failed register attempt" . "<br>";
+			exit(0);
 		}
 		// Debug purpose
 		echo "hello {$username} <br>";
@@ -142,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_SESSION["password"] = $password;
 		$_SESSION["email"] = $email;
 		*/
-
 	}
 	// Close statement and bdd connexion
 	$stmt->close();
