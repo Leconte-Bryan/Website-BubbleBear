@@ -20,21 +20,26 @@ include("Header.php");
         <div id="top-left">
             <div id="container-game-data">
                 <img class="game-icone" src="Main_img_BubleBear.jpg" alt="">
-                <table class="game-data" cellpadding="5" cellspacing="0">
+                <table class="game-data" cellpadding="10" cellspacing="0">
                     <tr>
-                        <th class="bg">Title : BubbleBear </th>
+                        <th class="bg"  style="width: 45%;" align="left">Title :</th>
+                        <th class="bg">BubbleBear </th>
                     </tr>
                     <tr>
-                        <th class="bg">Type : Speedrun </th>
+                        <th class="bg" align="left">Type :</th>
+                        <th class="bg">Speedrun </th>
                     </tr>
                     <tr>
-                        <th class="bg">Recommended age : 7 </th>
+                        <th class="bg" align="left">Recommended age :</th>
+                        <th class="bg">7 </th>
                     </tr>
                     <tr>
-                        <th class="bg">Command Type : Mouse </th>
+                        <th class="bg" align="left">Command Type :</th>
+                        <th class="bg">Mouse </th>
                     </tr>
                     <tr>
-                        <th class="bg">Released date : 28/01/2025 </th>
+                        <th class="bg" align="left">Released date :</th>
+                        <th class="bg">28/01/2025 </th>
                     </tr>
 
                 </table>
@@ -55,16 +60,16 @@ include("Header.php");
                     <caption>
                         Leaderboard
                     </caption>
-                    <tr>
-                        <th class="bg">#</th>
-                        <th class="bg" style="width: 250px;" align="left">Player</th>
-                        <th class="bg" id="sort-time">
+                    <tr class="leaderboard-row">
+                        <th class="leaderboard-bg">#</th>
+                        <th class="leaderboard-bg" style="width: 250px;" align="left">Player</th>
+                        <th class="leaderboard-bg" id="sort-time">
                             Time
                             <button id="SortByScore-button" method="post" style="display: inline; background-color: rgba(0, 0, 0, 0); border : rgba(0, 0, 0, 0)"> ▲ </button>
                         </th>
 
                         <!--eef-->
-                        <th class="bg">Date</th>
+                        <th class="leaderboard-bg">Date</th>
                         <tbody id="leaderboard-body"></tbody>
                     </tr>
                 </table>
@@ -190,12 +195,13 @@ include("Header.php");
                     console.log(maxPage);
                 }
 
+                if (reverse) {
+                    finalArray.reverse();
+                }
+                
                 const start = (page - 1) * maxElementPerPage; // At Page 1 -> 0
                 const end = start + maxElementPerPage; //  At Page 1 -> 0 + maxElementPerPage -> elem 1 - 2 - 3
                 const sliced = finalArray.slice(start, end);
-                if (reverse) {
-                    sliced.reverse();
-                }
                 DisplayLeaderboard(sliced);
                 sliced.forEach(element => {
                     console.log(element.username);
@@ -216,29 +222,29 @@ include("Header.php");
             leaderboardBody.innerHTML = "";
             for (i = 0; i < data.length; i++) {
                 let rankInt = parseInt(data[i].rank);
-                firstRow = `<tr><td class="bg">${data[i].rank}</td>`;
+                firstRow = `<tr class="leaderboard-row"><td>${data[i].rank}</td>`;
                 console.log(firstRow);
 
                 // Podium
                 if (rankInt <= 3) {
                     if (rankInt === 1) {
                         firstRow =
-                            `<tr><td class="bg" style="color:gold;">${data[i].rank}</td>`
+                            `<tr class="leaderboard-row"><td style="color:gold;">${data[i].rank}</td>`
                     }
                     if (rankInt === 2) {
                         firstRow =
-                            `<tr><td class="bg" style="color:silver;">${data[i].rank}</td>`
+                            `<tr class="leaderboard-row"><td style="color:silver;">${data[i].rank}</td>`
                     }
                     if (rankInt === 3) {
                         firstRow =
-                            `<tr><td class="bg" style="color:#b1560F;">${data[i].rank}</td>`
+                            `<tr class="leaderboard-row"><td style="color:#b1560F;">${data[i].rank}</td>`
                     }
                 }
                 row =
                     `${firstRow}
-            <td class="bg">${data[i].username}</td>
-            <td class="bg">${data[i].score}</td>
-             <td class="bg">${data[i].date}</td></tr>`
+            <td class="leaderboard-bg">${data[i].username}</td>
+            <td class="leaderboard-bg">${data[i].score}</td>
+             <td class="leaderboard-bg">${data[i].date}</td></tr>`
                 leaderboardBody.innerHTML += row;
             }
         }
