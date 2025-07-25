@@ -9,19 +9,23 @@
 </head>
 
 <body>
-        <header>
-        <nav class="NavMainMenu">
-            Le nom du site
-            <ul>
-                <?php if (isset($_SESSION['username'])): ?>
-                    <li><a href="LogOut.php"> <button class="ButtonRegisterMainMenu"> Logout </button> </a></li>
+    <header>
+       <!-- <nav class="NavMainMenu"> -->
+            <img src="Scaled_OURS.png" style="height:15vh;" alt="">
 
-                <?php else: ?>
-                    <li><a href="login.php"> <button class="ButtonLoginMainMenu"> Login </button> </a></li>
-                    <li><a href="register.php"> <button class="ButtonRegisterMainMenu"> Register </button> </a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
+            <div class="NavMainMenu">
+                <span><a href="index.php"> <button class="ButtonLoginMainMenu"> Main Page</button></a></span>
+                
+            <?php if (isset($_SESSION['username'])): ?>
+                <a href="LogOut.php"> <button class="ButtonRegisterMainMenu"> Logout </button> </a>
+
+            <?php else: ?>
+                <span><a href="login.php"> <button class="ButtonLoginMainMenu"> Login </button> </a></span>
+                <span><a href="register.php"> <button class="ButtonRegisterMainMenu"> Register </button> </a></span>
+                
+            <?php endif; ?>
+            </div>
+       <!-- </nav> -->
     </header>
 </body>
 

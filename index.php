@@ -13,8 +13,7 @@ include("Header.php");
     <link rel="stylesheet" href="Style.css">
 </head>
 
-<body class="body-BubbleBear">
-
+<body class="body-game">
     <div class="wrapper">
 
         <div id="top-left">
@@ -22,7 +21,7 @@ include("Header.php");
                 <img class="game-icone" src="Main_img_BubleBear.jpg" alt="">
                 <table class="game-data" cellpadding="10" cellspacing="0">
                     <tr>
-                        <th class="bg"  style="width: 45%;" align="left">Title :</th>
+                        <th class="bg" style="width: 45%;" align="left">Title :</th>
                         <th class="bg">BubbleBear </th>
                     </tr>
                     <tr>
@@ -103,7 +102,7 @@ include("Header.php");
     include("Footer.php");
     ?>
 
- 
+
     <script>
         const pageNbr = document.getElementById("page-number");
         let maxPage = undefined;
@@ -170,7 +169,7 @@ include("Header.php");
                 FetchData(inputText.value.toLowerCase(), reverseSort);
             });
         }
-
+        
         async function FetchData(input, reverse) {
             //console.log(input);
             try {
@@ -181,6 +180,7 @@ include("Header.php");
                 let finalArray = new Array();
                 const data = await response.json();
 
+                // if !empty form text
                 if (input != undefined) {
                     for (i = 0; i < data.length; i++) {
                         if (data[i].username.toLowerCase().includes(input)) {
@@ -198,7 +198,7 @@ include("Header.php");
                 if (reverse) {
                     finalArray.reverse();
                 }
-                
+
                 const start = (page - 1) * maxElementPerPage; // At Page 1 -> 0
                 const end = start + maxElementPerPage; //  At Page 1 -> 0 + maxElementPerPage -> elem 1 - 2 - 3
                 const sliced = finalArray.slice(start, end);

@@ -13,10 +13,9 @@ include("init.php");
     <!--To Use css style-->
     <link rel="stylesheet" href="Style.css">
     <title>Document</title>
-    <link rel="stylesheet" href="Style.css">
 </head>
 
-<body class="body-login-register">
+<body class="body-about">
     <div id="general-login-box">
         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
             <!--authentification-->

@@ -6,21 +6,30 @@
   --podium-first-color: gold;
   --podium-second-color: silver;
   --podium-third-color: #b1560f;
-
   /*--cell-bg-color: rgba(68, 20, 70, 0.285);*/
 }
 
-.body-login-register {
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  margin: 0px;
-  background: #353535;
-  display: grid;
-  place-items: center;
+.about-container {
+  width: 50vw;
+  height: auto;
+  min-height: 100vh;
+  background-color: rgba(223, 189, 216, 0.47);
+  justify-self: center;
+  font-size: 1.2rem;
 }
 
-.body-BubbleBear {
+.body-about {
+  background-image: url("Illus_intro.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  min-height: 100%;
+  margin: 0px;
+  display: grid;
+}
+
+.body-game {
   background-image: url("Illus_intro.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -42,19 +51,19 @@
   /*border: solid white 5px;*/
 }
 
+/*for mobile and zoom in*/
 @media (max-width: 1280px) {
   .wrapper {
-      /*en colonne*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    /*en colonne*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
-
 .wrapper > div {
   display: block;
-  margin: 20px auto; /* centré horizontalement */
+  margin: 20px auto;
 }
 
 /* 
@@ -69,20 +78,22 @@
 
 #container-game-data {
   box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
-  border: solid rgb(0, 0, 0) 1px;
+  background-color: var(--cell-bg-color);
   overflow: auto;
   border-radius: 8px;
   width: 25vw;
+  min-width: 25vw;
   height: auto;
 }
 
 .game-icone {
-  height: 25vh;
+  height: max-content;
   width: inherit;
 }
 
 .game-data {
   width: 100%;
+  min-width: 100%;
 }
 
 /* 
@@ -100,10 +111,9 @@
 */
 #bottom-center {
   display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center; /* centre verticalement */
+  justify-content: center;
+  align-items: center;
   grid-area: bottom-center;
-  border: solid blue 2px;
   display: grid;
   width: 33%;
   margin-left: 33%;
@@ -127,13 +137,26 @@ footer {
   z-index: 5;
 }
 
+
 header {
   display: flex;
-  margin-right: 25%;
-  margin-left: 25%;
-  height: auto;
-  flex-shrink: 0;
+  justify-content: space-between;
+  margin-right: 25vw;
+  margin-left: 25vw;
+  height: 15vh;
+  width: auto;
   background-color: var(--header-footer-bg-color);
+}
+
+@media (max-width: 1280px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 0%;
+    margin-left: 0%;
+    width: 100vw;
+    background-color: var(--header-footer-bg-color);
+  }
 }
 
 .container {
@@ -277,7 +300,6 @@ h2 {
 }
 
 .button-play {
-  /*border: solid rgb(170, 255, 0) 1px;*/
   height: 3vh;
   width: 6vw;
   scale: 1.5;
@@ -297,31 +319,14 @@ h2 {
 }
 /* nav menu */
 .NavMainMenu {
-  display: flex;
-  gap: 2rem; /* espacement entre les liens du menu */
-  /*background-color: #ff00dd;*/
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  justify-content:space-between;
+  align-content:space-evenly;
+  max-width: 100%;
+  margin-right: 2vw;
 }
 
-.NavMainMenu ul {
-  justify-content: space-between;
-}
-
-.NavMainMenu ul li {
-  display: inline-block;
-  list-style: none;
-  margin: 0 20px;
-}
-
-.NavMainMenu ul li a {
-  text-decoration: none;
-  color: black;
-}
-
-.NavMainMenu ul li button {
-  text-decoration: none;
-  color: black;
+span + span {
+    margin-left: 2vw;
 }
 
 /*global box leaderboard*/
@@ -386,29 +391,29 @@ table.LeaderboardMainMenu caption {
   color: rgb(255, 255, 255);
   background-color: rgba(37, 0, 172, 0);
   border-color: #ffffff00;
-  border-width: 20px;
+  border-width: 1vw;
   border-radius: 8px;
 }
 
 .ButtonLoginMainMenu:hover {
   background-color: rgba(255, 255, 255, 0.452);
   color: rgb(255, 255, 255);
-  border-width: 20px;
+  border-width: 1vw;
   border-radius: 8px;
 }
 
 .ButtonRegisterMainMenu {
-  color: rgba(255, 255, 255, 0);
+  color: rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
   border-color: #ffffff00;
-  border-width: 20px;
+  border-width: 1vw;
   border-radius: 8px;
   font-weight: bold;
 }
 
 .ButtonRegisterMainMenu:hover {
   background-color: rgb(203, 203, 203);
-  border-width: 20px;
+  border-width: 1vw;
   border-radius: 8px;
 }
 
@@ -431,4 +436,5 @@ footer a:hover {
 .headline {
   color: #ffffff;
   font-weight: bold;
+
 }
