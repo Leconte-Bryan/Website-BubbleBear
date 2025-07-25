@@ -1,5 +1,6 @@
 <?php
 include("init.php");
+include("Header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

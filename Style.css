@@ -186,6 +186,7 @@ h2 {
   border-style: outset;
   border-width: 2px;
   border-radius: 5px;
+  justify-self: center;
 
   display: grid;
   place-items: center;

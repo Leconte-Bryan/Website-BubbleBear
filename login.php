@@ -1,5 +1,6 @@
 <?php
 include("init.php");
+include("Header.php");
 //echo 'Nom de la session : ' . session_name();
 ?>
 
