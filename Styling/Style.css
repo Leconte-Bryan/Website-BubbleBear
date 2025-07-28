@@ -18,8 +18,8 @@
   font-size: 1.2rem;
 }
 
-.body-about {
-  background-image: url("Illus_intro.jpg");
+body {
+  background-image: url("../BubbleBearImg/Illus_intro.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -27,18 +27,6 @@
   min-height: 100%;
   margin: 0px;
   display: grid;
-}
-
-.body-game {
-  background-image: url("Illus_intro.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  width: 100%;
-  min-height: 100%;
-  margin: 0px;
-  display: grid;
-  /*place-items: center;*/
   z-index: -5;
 }
 
@@ -125,38 +113,6 @@
   border-radius: 1px;
   box-shadow: 0px 0px 15px #3e1558;
   min-height: 25vh;
-}
-
-footer {
-  bottom: 0;
-  display: flex;
-  place-content: center;
-  width: 100%;
-  height: auto;
-  background-color: var(--header-footer-bg-color);
-  z-index: 5;
-}
-
-
-header {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 25vw;
-  margin-left: 25vw;
-  height: 15vh;
-  width: auto;
-  background-color: var(--header-footer-bg-color);
-}
-
-@media (max-width: 1280px) {
-  header {
-    display: flex;
-    justify-content: space-between;
-    margin-right: 0%;
-    margin-left: 0%;
-    width: 100vw;
-    background-color: var(--header-footer-bg-color);
-  }
 }
 
 .container {
@@ -318,17 +274,7 @@ h2 {
   100% {
   }
 }
-/* nav menu */
-.NavMainMenu {
-  justify-content:space-between;
-  align-content:space-evenly;
-  max-width: 100%;
-  margin-right: 2vw;
-}
 
-span + span {
-    margin-left: 2vw;
-}
 
 /*global box leaderboard*/
 .LeaderboardBox {
@@ -386,56 +332,3 @@ table.LeaderboardMainMenu caption {
   border-color: rgba(49, 15, 53, 0.525);
 }
 
-.ButtonLoginMainMenu {
-  --duration: 0.4s;
-  transition-duration: var(--duration);
-  color: rgb(255, 255, 255);
-  background-color: rgba(37, 0, 172, 0);
-  border-color: #ffffff00;
-  border-width: 1vw;
-  border-radius: 8px;
-}
-
-.ButtonLoginMainMenu:hover {
-  background-color: rgba(255, 255, 255, 0.452);
-  color: rgb(255, 255, 255);
-  border-width: 1vw;
-  border-radius: 8px;
-}
-
-.ButtonRegisterMainMenu {
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
-  border-color: #ffffff00;
-  border-width: 1vw;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.ButtonRegisterMainMenu:hover {
-  background-color: rgb(203, 203, 203);
-  border-width: 1vw;
-  border-radius: 8px;
-}
-
-footer a:link {
-  color: pink;
-  background-color: transparent;
-  text-decoration: none;
-}
-footer a:visited {
-  color: pink;
-  background-color: transparent;
-  text-decoration: none;
-}
-footer a:hover {
-  color: rgb(255, 124, 146);
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-.headline {
-  color: #ffffff;
-  font-weight: bold;
-
-}

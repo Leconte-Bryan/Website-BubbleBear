@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="preload" as="image" href="BubbleBeartitle.png">
+    <link rel="stylesheet" href="Styling/Header_Footer.css">
 </head>
 
 <body>
     <header>
        <!-- <nav class="NavMainMenu"> -->
-            <img src="Scaled_OURS.png" style="height:15vh;" alt="">
+            <img src="BubbleBearImg\Scaled_OURS.png" style="height:15vh;" alt="">
 
             <div class="NavMainMenu">
                 <span><a href="index.php"> <button class="ButtonLoginMainMenu"> Main Page</button></a></span>

@@ -10,7 +10,9 @@ include("Header.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="Styling/Header_Footer.css">
+    <link rel="stylesheet" href="Styling/GameData.css">
+    
 </head>
 
 <body class="body-game">
@@ -18,7 +20,7 @@ include("Header.php");
 
         <div id="top-left">
             <div id="container-game-data">
-                <img class="game-icone" src="Main_img_BubleBear.jpg" alt="">
+                <img class="game-icone" src="BubbleBearImg\Main_img_BubleBear.jpg" alt="">
                 <table class="game-data" cellpadding="10" cellspacing="0">
                     <tr>
                         <th class="bg" style="width: 45%;" align="left">Title :</th>
@@ -94,7 +96,7 @@ include("Header.php");
         </div>
         <div id="bottom-center">
 
-            <a target="_blank" href="BuildBB/GamePage.php"> <img class="button-play" src="Start_ui_def.png" alt=""></a>
+            <a target="_blank" href="BuildBB/GamePage.php"> <img class="button-play" src="BubbleBearImg\Start_ui_def.png" alt=""></a>
         </div>
     </div>
 

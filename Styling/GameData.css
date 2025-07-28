@@ -1,0 +1,303 @@
+:root {
+  --header-footer-bg-color: rgba(64, 20, 70, 0.5);
+  --main-bg-color: #353535;
+  --cell-bg-color: rgba(68, 20, 70, 1);
+  --cell-selected-bg-color: rgb(116, 57, 118);
+  --podium-first-color: gold;
+  --podium-second-color: silver;
+  --podium-third-color: #b1560f;
+  /*--cell-bg-color: rgba(68, 20, 70, 0.285);*/
+}
+
+body {
+  background-image: url("../BubbleBearImg/Illus_intro.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  width: 100%;
+  min-height: 100%;
+  margin: 0px;
+  display: grid;
+  z-index: -5;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "top-left top-right"
+    "bottom-center bottom-center";
+  grid-template-rows: 75vh auto;
+  /*border: solid white 5px;*/
+}
+
+/*for mobile and zoom in*/
+@media (max-width: 1280px) {
+  .wrapper {
+    /*en colonne*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.wrapper > div {
+  display: block;
+  margin: 20px auto;
+}
+
+/* 
+* Game Data
+*/
+#top-left {
+  display: grid;
+  place-content: center;
+  grid-area: top-left;
+  box-sizing: border-box;
+}
+
+#container-game-data {
+  box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  background-color: var(--cell-bg-color);
+  overflow: auto;
+  border-radius: 8px;
+  width: 25vw;
+  min-width: 25vw;
+  height: auto;
+}
+
+.game-icone {
+  height: max-content;
+  width: inherit;
+}
+
+.game-data {
+  width: 100%;
+  min-width: 100%;
+}
+
+/* 
+* Leaderboard
+*/
+#top-right {
+  display: grid;
+  place-content: center;
+  grid-area: top-right;
+  box-sizing: border-box;
+}
+
+/* 
+* Play
+*/
+#bottom-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: bottom-center;
+  display: grid;
+  width: 33%;
+  margin-left: 33%;
+  margin-right: 33%;
+  grid-area: bottom-center;
+  place-content: center;
+  background: #6a2893;
+  border: solid black 1px;
+  border-radius: 1px;
+  box-shadow: 0px 0px 15px #3e1558;
+  min-height: 25vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  color: rgb(255, 255, 255);
+}
+
+.HeaderMainMenu {
+  background: #ad67d9;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5rem; /* Un peu d’espace sur les côtés */
+  box-sizing: border-box;
+  z-index: 1000;
+  justify-content: center;
+}
+
+/* box dans laquelle se trouve les icones */
+.Logo-Header {
+  display: inline;
+  margin-right: auto;
+  margin-top: 1%;
+  padding: 30px 0;
+  width: 500px;
+  /*background-color: #008cff;*/
+}
+
+.MainTitle {
+  max-height: 120px;
+  height: auto;
+  display: inline-block;
+  height: 120px;
+}
+
+.Logo-Img {
+  max-height: 120px;
+  height: auto;
+  display: inline-block;
+  height: 120px;
+}
+
+.button-play {
+  height: 3vh;
+  width: 6vw;
+  scale: 1.5;
+  animation-duration: 3s;
+  animation-name: expand;
+  animation-iteration-count: infinite;
+}
+
+@keyframes expand {
+  0% {
+  }
+  30% {
+    scale: 3;
+  }
+  100% {
+  }
+}
+/* nav menu */
+.NavMainMenu {
+  justify-content: space-between;
+  align-content: space-evenly;
+  max-width: 100%;
+  margin-right: 2vw;
+}
+
+span + span {
+  margin-left: 2vw;
+}
+
+/*global box leaderboard*/
+.LeaderboardBox {
+  position: relative;
+  /*top: 150px;*/
+  /*
+  border: solid red 2px;
+  border-radius: 10px;
+  */
+}
+
+.LeaderboardMainMenu {
+  position: relative;
+  border-collapse: separate;
+  box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  border: solid rgb(0, 0, 0) 1px;
+  /*border-radius: 8px;*/
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+table.LeaderboardMainMenu caption {
+  caption-side: top;
+  background-color: var(--cell-bg-color);
+  box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  font-size: 24px;
+  padding: 10px;
+  color: white;
+  border: solid rgb(0, 0, 0) 1px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.leaderboard-row {
+  background-color: var(--cell-bg-color);
+  color: white;
+}
+
+.leaderboard-bg {
+  font-style: bold;
+  border-bottom: 1px solid #ddd;
+  border-color: rgba(49, 15, 53, 0.525);
+}
+
+.leaderboard-row:hover {
+  background-color: var(--cell-selected-bg-color);
+}
+
+/*cell styling*/
+.bg {
+  background-color: var(--cell-bg-color);
+  color: white;
+  font-style: bold;
+  border-bottom: 1px solid #ddd;
+  border-color: rgba(49, 15, 53, 0.525);
+}
+
+.ButtonLoginMainMenu {
+  --duration: 0.4s;
+  transition-duration: var(--duration);
+  color: rgb(255, 255, 255);
+  background-color: rgba(37, 0, 172, 0);
+  border-color: #ffffff00;
+  border-width: 1vw;
+  border-radius: 8px;
+}
+
+.ButtonLoginMainMenu:hover {
+  background-color: rgba(255, 255, 255, 0.452);
+  color: rgb(255, 255, 255);
+  border-width: 1vw;
+  border-radius: 8px;
+}
+
+.ButtonRegisterMainMenu {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  border-color: #ffffff00;
+  border-width: 1vw;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.ButtonRegisterMainMenu:hover {
+  background-color: rgb(203, 203, 203);
+  border-width: 1vw;
+  border-radius: 8px;
+}
+
+footer a:link {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+footer a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+footer a:hover {
+  color: rgb(255, 124, 146);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.headline {
+  color: #ffffff;
+  font-weight: bold;
+}

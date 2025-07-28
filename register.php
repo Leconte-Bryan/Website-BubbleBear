@@ -8,11 +8,12 @@ include("Header.php");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="Style.css">
+	<link rel="stylesheet" href="Styling/Style.css">
+    <link rel="stylesheet" href="Styling/Header_Footer.css">
 	<title>Document</title>
 </head>
 
-<body class="body-about">
+<body>
 
 	<div id="general-login-box">
 		<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
