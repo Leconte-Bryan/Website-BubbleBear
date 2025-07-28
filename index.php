@@ -15,7 +15,7 @@ include("Header.php");
     
 </head>
 
-<body class="body-game">
+<body>
     <div class="wrapper">
 
         <div id="top-left">
@@ -79,7 +79,7 @@ include("Header.php");
                     <span style="width:45%">
                         <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" style="position: relative;">
                             <input type="number" name="PageIdx" id="Input-Page-Idx" value="1" style="width: 20%;">
-                            <input type="submit" name="SortByPage" id="SortByInputPage-Button">
+                            <input type="submit" name="SortByPage" id="SortByInputPage-Button" value="Sort">
                         </form>
                     </span>
 
@@ -88,7 +88,7 @@ include("Header.php");
                             ◀ </button>
                         <button id="Index-Plus-Leaderboard"> ▶ </button>
                     </div>
-                    <div id="page-number">
+                    <div id="page-number" style="color: white;">
                     </div>
                 </div>
             </div>

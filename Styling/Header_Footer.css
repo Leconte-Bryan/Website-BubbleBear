@@ -1,14 +1,12 @@
 footer {
-  bottom: 0;
+  bottom: 0%;
   display: flex;
   place-content: center;
   width: 100%;
   height: auto;
-  background-color: var(--header-footer-bg-color);
+  background-color: rgba(64, 20, 70, 0.5);
   z-index: 5;
 }
-
-
 
 footer a:link {
   color: pink;

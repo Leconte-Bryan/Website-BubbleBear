@@ -17,31 +17,26 @@ include("Header.php");
     <title>Document</title>
 </head>
 
-<body class="body-about">
-    <div id="general-login-box">
-        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
-            <!--authentification-->
+<body>
+        <div id="general-login-box">
+            <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+                <!--authentification-->
 
-            <input type="text" name="username" id="login-text-box" placeholder="username0123"><br>
-            <input type="password" name="password" id="login-text-box" placeholder="password"><br>
-            <input type="email" name="email" id="login-text-box" placeholder="myemail@.com"><br>
+                <input type="text" name="username" id="login-text-box" placeholder="username0123"><br>
+                <input type="password" name="password" id="login-text-box" placeholder="password"><br>
+                <input type="email" name="email" id="login-text-box" placeholder="myemail@.com"><br>
 
-            <input type="submit" name="login" value="log in" id="login-button"><br>
-            <a href="">
-                <h3 style="text-align: center;">Forget password ?</h4>
+                <input type="submit" name="login" value="log in" id="login-button">
+                <a href="">
+                    <h3 style="text-align: center;">Forgotten password ?</h3>
+                </a>
+                <hr/>
+            </form>
+            <a href="register.php">
+                <button onclick="" id="register-button">REGISTER</button>
             </a>
-            <hr />
-
-        </form>
-
-
-        <a href="register.php">
-
-            <button onclick="" id="register-button">REGISTER</button>
-        </a>
-        <a href="index.php"> This goes to the main page Page</a>
-        <br>
-    </div>
+            <a href="index.php"> This goes to the main page Page</a>
+        </div>
     <?php
     include("Footer.php");
     ?>

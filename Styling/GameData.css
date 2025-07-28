@@ -27,17 +27,6 @@ body {
     "top-left top-right"
     "bottom-center bottom-center";
   grid-template-rows: 75vh auto;
-  /*border: solid white 5px;*/
-}
-
-/*for mobile and zoom in*/
-@media (max-width: 1280px) {
-  .wrapper {
-    /*en colonne*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 }
 
 .wrapper > div {
@@ -57,6 +46,7 @@ body {
 
 #container-game-data {
   box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+  border: solid rgb(0, 0, 0) 1px;
   background-color: var(--cell-bg-color);
   overflow: auto;
   border-radius: 8px;
@@ -106,24 +96,6 @@ body {
   min-height: 25vh;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-h1 {
-  text-align: center;
-}
-
-h2 {
-  color: rgb(255, 255, 255);
-}
-
 .HeaderMainMenu {
   background: #ad67d9;
   position: fixed;
@@ -164,8 +136,8 @@ h2 {
 }
 
 .button-play {
-  height: 3vh;
-  width: 6vw;
+  height: 4.5vh;
+  width: 9vw;
   scale: 1.5;
   animation-duration: 3s;
   animation-name: expand;
@@ -181,6 +153,7 @@ h2 {
   100% {
   }
 }
+
 /* nav menu */
 .NavMainMenu {
   justify-content: space-between;
@@ -196,11 +169,7 @@ span + span {
 /*global box leaderboard*/
 .LeaderboardBox {
   position: relative;
-  /*top: 150px;*/
-  /*
-  border: solid red 2px;
   border-radius: 10px;
-  */
 }
 
 .LeaderboardMainMenu {
@@ -281,23 +250,228 @@ table.LeaderboardMainMenu caption {
   border-radius: 8px;
 }
 
-footer a:link {
-  color: pink;
-  background-color: transparent;
-  text-decoration: none;
-}
-footer a:visited {
-  color: pink;
-  background-color: transparent;
-  text-decoration: none;
-}
-footer a:hover {
-  color: rgb(255, 124, 146);
-  background-color: transparent;
-  text-decoration: underline;
+/*for mobile and zoom in*/
+@media only screen and (max-width: 575.98px) and (orientation: portrait) {
+  .wrapper {
+    /*en colonne*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  #container-game-data {
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    background-color: var(--cell-bg-color);
+    overflow: auto;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+  }
+
+  #bottom-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: bottom-center;
+    display: grid;
+
+    grid-area: bottom-center;
+    place-content: center;
+    background: #6a2893;
+    border: solid black 1px;
+    border-radius: 1px;
+    box-shadow: 0px 0px 15px #3e1558;
+    min-height: 10vh;
+    width: 100%;
+  }
+
+  .button-play {
+    height: 3vh;
+    width: 24vw;
+    scale: 1.5;
+    animation-duration: 3s;
+    animation-name: expand;
+    animation-iteration-count: infinite;
+  }
 }
 
-.headline {
-  color: #ffffff;
-  font-weight: bold;
+@media (min-width: 767.98px) and (orientation: landscape) {
+  .wrapper {
+    /*en colonne*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  #container-game-data {
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    background-color: var(--cell-bg-color);
+    overflow: auto;
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+  }
+
+  .LeaderboardMainMenu {
+    position: relative;
+    border-collapse: separate;
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    border: solid rgb(0, 0, 0) 1px;
+    /*border-radius: 8px;*/
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  #bottom-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: bottom-center;
+    display: grid;
+
+    grid-area: bottom-center;
+    place-content: center;
+    background: #6a2893;
+    border: solid black 1px;
+    border-radius: 1px;
+    box-shadow: 0px 0px 15px #15581b;
+    min-height: 36vh;
+    width: 100%;
+  }
+
+  .button-play {
+    height: 6vh;
+    width: 16vw;
+    scale: 1.5;
+    animation-duration: 3s;
+    animation-name: expand;
+    animation-iteration-count: infinite;
+  }
+}
+
+@media (min-width: 767.98px) and (orientation: portrait) {
+  .wrapper {
+    /*en colonne*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  #container-game-data {
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    background-color: var(--cell-bg-color);
+    overflow: auto;
+    border-radius: 8px;
+    width: 60vw;
+    height: auto;
+  }
+
+  .LeaderboardMainMenu {
+    position: relative;
+    border-collapse: separate;
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    border: solid rgb(0, 0, 0) 1px;
+    /*border-radius: 8px;*/
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  #bottom-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: bottom-center;
+    display: grid;
+
+    grid-area: bottom-center;
+    place-content: center;
+    background: #6a2893;
+    border: solid black 1px;
+    border-radius: 1px;
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    min-height: 10vh;
+    width: 100%;
+  }
+
+  .button-play {
+    height: 3vh;
+    width: 16vw;
+    scale: 1.5;
+    animation-duration: 3s;
+    animation-name: expand;
+    animation-iteration-count: infinite;
+  }
+}
+
+@media (min-width: 991.98px) {
+  .wrapper {
+    display: grid;
+    grid-template-areas:
+      "top-left top-right"
+      "bottom-center bottom-center";
+    grid-template-rows: 75vh auto;
+    margin: 0px;
+  }
+
+  #container-game-data {
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    border: solid rgb(0, 0, 0) 1px;
+    background-color: var(--cell-bg-color);
+    overflow: auto;
+    border-radius: 8px;
+    width: 25vw;
+    min-width: 25vw;
+    height: auto;
+  }
+
+  #bottom-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: bottom-center;
+    display: grid;
+    width: 33%;
+    margin-left: 33%;
+    margin-right: 33%;
+    grid-area: bottom-center;
+    place-content: center;
+    background: #6a2893;
+    border: solid black 1px;
+    border-radius: 1px;
+    box-shadow: 0px 0px 15px #3e1558;
+    min-height: 25vh;
+  }
+
+  .button-play {
+    height: 4.5vh;
+    width: 9vw;
+    scale: 1.5;
+    animation-duration: 3s;
+    animation-name: expand;
+    animation-iteration-count: infinite;
+  }
+}
+
+@media (min-width: 1199.98px) {
+  .wrapper {
+    display: grid;
+    grid-template-areas:
+      "top-left top-right"
+      "bottom-center bottom-center";
+    grid-template-rows: 75vh auto;
+  }
+
+  #container-game-data {
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    background-color: var(--cell-bg-color);
+    overflow: auto;
+    border-radius: 8px;
+    width: 25vw;
+    min-width: 25vw;
+    height: auto;
+  }
 }
