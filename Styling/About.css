@@ -24,20 +24,20 @@ body {
 }
 
 .about-container {
- /*background-color: rgba(223, 189, 216, 0.47);*/
+  /*background-color: rgba(223, 189, 216, 0.47);*/
   justify-self: center;
   color: rgb(229, 229, 229);
 }
 
-.mobile-only{
+.mobile-only {
   height: auto;
   min-height: 100vh;
   font-size: 1.2rem;
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr;
 }
 
-.bullet-point{
+.bullet-point {
   margin-top: 50px;
   display: flex;
   width: 100%;
@@ -47,13 +47,12 @@ body {
   box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
   font-size: 20px;
   text-align: left;
-  align-items:center;
+  align-items: center;
 }
 
-.other-screen{
-
+.other-screen {
   width: auto;
-    height: auto;
+  height: auto;
   min-height: 100vh;
   font-size: 1.2rem;
 }
@@ -70,20 +69,47 @@ h2 {
   color: rgb(255, 255, 255);
 }
 
-@media only screen and (max-width: 575.98px) and (orientation: portrait) {
-  .mobile-only{
+@media only screen and (max-width: 767.97px) and (orientation: portrait) {
+  .mobile-only {
     display: block;
   }
-  .other-screen{
+  .bullet-point {
+    background-color: var(--bullet-point-color);
+  }
+  .other-screen {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767.97px) and (orientation: landscape) {
+  .mobile-only {
+    display: block;
+  }
+  .bullet-point {
+    margin-top: 25px;
+    display: flex;
+    width: 100%;
+    height: 20vh;
+    background-color: var(--bullet-point-color);
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
+    font-size: 20px;
+    text-align: left;
+    align-items: center;
+  }
+  .other-screen {
     display: none;
   }
 }
 
 @media (min-width: 767.98px) {
-  .mobile-only{
+  .mobile-only {
     display: none;
   }
-      .about-container {
+  .bullet-point {
+    background-color: var(--bullet-point-color);
+  }
+  .about-container {
     background-color: var(--About-text-bg-color);
     width: 75vw;
     height: auto;
@@ -94,7 +120,10 @@ h2 {
 }
 
 @media (min-width: 767.98px) and (orientation: portrait) {
-      .about-container {
+  .bullet-point {
+    background-color: green;
+  }
+  .about-container {
     width: 75vw;
     height: auto;
     min-height: 100vh;
@@ -103,8 +132,9 @@ h2 {
 }
 
 @media (min-width: 991.98px) {
-      .about-container {
-    width: 50vw;
+
+  .about-container {
+    width: 75vw;
     height: auto;
     min-height: 100vh;
     justify-self: center;
@@ -112,4 +142,21 @@ h2 {
 }
 
 @media (min-width: 1199.98px) {
+
+}
+
+a:link {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(255, 124, 146);
+  background-color: transparent;
+  text-decoration: none;
 }

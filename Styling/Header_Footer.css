@@ -29,22 +29,18 @@ footer a:hover {
   font-weight: bold;
 }
 
-/*header full
-header {
-  height: 10vh;
-  width: auto;
-  background-color: var(--header-footer-bg-color);
-}
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 20%;
-  margin-left: 20%;
-}
-*/
+  header {
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 0%;
+    margin-left: 0%;
+    width: 100vw;
+    background-color: var(--header-footer-bg-color);
+  }
 
 
+/* middle
 header {
   display: flex;
   justify-content: space-evenly;
@@ -54,7 +50,7 @@ header {
   width: auto;
   background-color: var(--header-footer-bg-color);
 }
-
+*/
 /* nav menu */
 .NavMainMenu {
   justify-content:space-evenly;;

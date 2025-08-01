@@ -297,7 +297,7 @@ table.LeaderboardMainMenu caption {
   }
 }
 
-@media (min-width: 767.98px) and (orientation: landscape) {
+@media (max-width: 767.98px) and (orientation: landscape) {
   .wrapper {
     /*en colonne*/
     display: flex;
@@ -337,7 +337,7 @@ table.LeaderboardMainMenu caption {
     background: #6a2893;
     border: solid black 1px;
     border-radius: 1px;
-    box-shadow: 0px 0px 15px #15581b;
+    box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
     min-height: 36vh;
     width: 100%;
   }
@@ -352,7 +352,7 @@ table.LeaderboardMainMenu caption {
   }
 }
 
-@media (min-width: 767.98px) and (orientation: portrait) {
+@media (min-width: 767.98px){
   .wrapper {
     /*en colonne*/
     display: flex;
@@ -393,7 +393,7 @@ table.LeaderboardMainMenu caption {
     border: solid black 1px;
     border-radius: 1px;
     box-shadow: 0px 0px 15px rgba(32, 25, 67, 0.5);
-    min-height: 10vh;
+    min-height: 15vh;
     width: 100%;
   }
 
