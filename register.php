@@ -10,7 +10,7 @@ include("Header.php");
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="Styling/Style.css">
     <link rel="stylesheet" href="Styling/Header_Footer.css">
-	<title>Document</title>
+	<title>Register</title>
 </head>
 
 <body>

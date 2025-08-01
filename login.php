@@ -14,7 +14,7 @@ include("Header.php");
     <!--To Use css style-->
     <link rel="stylesheet" href="Styling/Style.css">
     <link rel="stylesheet" href="Styling/Header_Footer.css">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>

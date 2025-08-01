@@ -8,7 +8,7 @@ include("Header.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About</title>
     <link rel="stylesheet" href="Styling/About.css">
     <link rel="stylesheet" href="Styling/Header_Footer.css">
 
@@ -24,10 +24,13 @@ include("Header.php");
                &#9989; Play for free
             </h1>
             <h1 class="bullet-point">
-               &#9989; Compete against friends and
+               &#9989; Compete against friends and others
             </h1>
             <h1 class="bullet-point">
                &#9989; Leaderboard and ranking system
+            </h1>
+            <h1 class="bullet-point">
+               &#9989; Website still in development
             </h1>
         </div>
         <div class="other-screen">
