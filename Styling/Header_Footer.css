@@ -21,7 +21,7 @@ footer a:visited {
 footer a:hover {
   color: rgb(255, 124, 146);
   background-color: transparent;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .headline {
@@ -29,19 +29,35 @@ footer a:hover {
   font-weight: bold;
 }
 
+/*header full
 header {
+  height: 10vh;
+  width: auto;
+  background-color: var(--header-footer-bg-color);
+}
+
+.container {
   display: flex;
   justify-content: space-between;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+*/
+
+
+header {
+  display: flex;
+  justify-content: space-evenly;
   margin-right: 25vw;
   margin-left: 25vw;
-  height: 15vh;
+  height: 10vh;
   width: auto;
   background-color: var(--header-footer-bg-color);
 }
 
 /* nav menu */
 .NavMainMenu {
-  justify-content:space-between;
+  justify-content:space-evenly;;
   align-content:space-evenly;
   max-width: 100%;
   margin-right: 2vw;
@@ -86,7 +102,7 @@ span + span {
 @media (max-width: 1280px) {
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin-right: 0%;
     margin-left: 0%;
     width: 100vw;

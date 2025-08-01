@@ -9,15 +9,6 @@
   /*--cell-bg-color: rgba(68, 20, 70, 0.285);*/
 }
 
-.about-container {
-  width: 50vw;
-  height: auto;
-  min-height: 100vh;
-  background-color: rgba(223, 189, 216, 0.47);
-  justify-self: center;
-  font-size: 1.2rem;
-}
-
 body {
   background-image: url("../BubbleBearImg/Illus_intro.jpg");
   background-repeat: no-repeat;
@@ -29,18 +20,6 @@ body {
   margin: 0px;
   display: grid;
   z-index: -5;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-h1 {
-  text-align: center;
-}
-
-h2 {
-  color: rgb(255, 255, 255);
 }
 
 #general-login-box {

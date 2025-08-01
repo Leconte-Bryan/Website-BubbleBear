@@ -12,7 +12,6 @@ include("Header.php");
     <title>Document</title>
     <link rel="stylesheet" href="Styling/Header_Footer.css">
     <link rel="stylesheet" href="Styling/GameData.css">
-    
 </head>
 
 <body>
