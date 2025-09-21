@@ -67,8 +67,6 @@ include("Header.php");
                             Time
                             <button id="SortByScore-button" method="post" style="display: inline; background-color: rgba(0, 0, 0, 0); border : rgba(0, 0, 0, 0)"> ▲ </button>
                         </th>
-
-                        <!--eef-->
                         <th class="leaderboard-bg">Date</th>
                         <tbody id="leaderboard-body"></tbody>
                     </tr>
@@ -204,9 +202,6 @@ include("Header.php");
                 const end = start + maxElementPerPage; //  At Page 1 -> 0 + maxElementPerPage -> elem 1 - 2 - 3
                 const sliced = finalArray.slice(start, end);
                 DisplayLeaderboard(sliced);
-                sliced.forEach(element => {
-                    console.log(element.username);
-                });
             } catch (e) {
                 console.error(e);
             }

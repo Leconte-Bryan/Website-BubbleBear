@@ -9,7 +9,7 @@ include("Header.php");
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="Styling/Style.css">
-    <link rel="stylesheet" href="Styling/Header_Footer.css">
+	<link rel="stylesheet" href="Styling/Header_Footer.css">
 	<title>Register</title>
 </head>
 
@@ -27,6 +27,9 @@ include("Header.php");
 		</form>
 		<a href="login.php"> This goes to the login page</a>
 	</div>
+	</div>
+	<div id="error-box">
+	</div>
 	<?php
 	include("Footer.php");
 	?>
@@ -35,6 +38,41 @@ include("Header.php");
 </html>
 
 <?php
+
+
+function generateUser($conn, $nbrNewUser)
+{
+	$username = "newUser";
+	$password = "newUserPassword";
+	$email = "newUser";
+	for ($i = 1; $i < $nbrNewUser; $i++) {
+		$newUsername = $username . strval($i);
+		$newPassword = $password . strval($i);
+
+		$newEmail  = mb_strtolower(trim($email . strval($i) . "@gmail.com"));
+		$hash = password_hash($newPassword, PASSWORD_DEFAULT);
+		// Template of the request
+		$sql = "INSERT INTO users (username, password_hash, email) 
+				VALUES(?, ?, ?)";
+		// Prepare this specific request
+		$stmt = $conn->prepare($sql);
+		// first argument : data type (s = string), second = the value
+		$stmt->bind_param("sss", $newUsername, $hash, $newEmail);
+		// Execute the query
+		$stmt->execute();
+	}
+}
+
+function displayError($errorMessage)
+{
+	echo '<script>
+    const errorBox = document.getElementById("error-box");
+    errorBox.style.visibility = "visible";
+    errorBox.innerText = "' . $errorMessage . '";
+    </script>';
+}
+
+
 
 
 /*
@@ -53,6 +91,9 @@ if (isset($_SESSION["username"])) {
 
 // More reliable
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	//generateUser($conn, 50);
+
 	//Stop the user from using special character
 	//Prevent people from using script or sql injection 
 	//Keep the char who are not filtered
@@ -64,22 +105,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	// Check if field empty
 	if (empty($username)) {
-		echo "username is missing";
+		displayError("username is missing");
+		//echo "username is missing";
 		exit(0);
 	} else if (empty($password)) {
-		echo "password is missing";
+		displayError("password is missing");
+		//echo "password is missing";
 		exit(0);
 	} else if ($password != $password_check) {
-		echo "not the same password !";
+		displayError("not the same password or is missing");
+		//echo "not the same password !";
 		exit(0);
 	} else if (empty($email)) {
-		echo "That email is invalid";
+		displayError("That email is invalid");
+		//echo "That email is invalid";
 		exit(0);
 	} else {
 
 
-		$hash = password_hash($password, PASSWORD_DEFAULT);
-		$hash_mail = password_hash($email, PASSWORD_DEFAULT);
+		$hash_password = password_hash($password, PASSWORD_DEFAULT);
+		//$hash_mail = hash('sha512', $email);
 		// Old and not safe insertion method (no preparation, vulnerable to sql injection)
 		/*$sql = "INSERT INTO users (username, password_hash, email) 
 				VALUES('$username', '$hash', '$email')";*/
@@ -92,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			// Prepare this specific request
 			$stmt = $conn->prepare($sql);
 			// first argument : data type (s = string), second = the value
-			$stmt->bind_param("sss", $username, $hash, $hash_mail);
+			$stmt->bind_param("sss", $username, $hash_password, $email);
 			// Execute the query
 			$stmt->execute();
 		} catch (mysqli_sql_exception $e) {
@@ -119,10 +164,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			exit(0);
 		}
 		// Debug purpose
+		/*
 		echo "hello {$username} <br>";
 		echo "your password is: {$password} <br>";
 		echo "your email is: {$email} <br>";
-
+		*/
 		// Attribute to the session the value;
 		$_SESSION["username"] = $username;
 		// debug

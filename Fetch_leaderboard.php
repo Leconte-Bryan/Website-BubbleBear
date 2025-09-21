@@ -23,7 +23,7 @@ while ($row_LeaderBoard = mysqli_fetch_array($result_DisplayLeaderboard)) {
         'date' => $row_LeaderBoard['game_date'],
     ];
 }
-//echo json_encode($rows);
+
 echo json_encode( $Rows);
 ?>
 

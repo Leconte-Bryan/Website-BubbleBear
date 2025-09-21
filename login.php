@@ -18,6 +18,7 @@ include("Header.php");
 </head>
 
 <body>
+    <div style="display:grid; place-items: center;">
         <div id="general-login-box">
             <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                 <!--authentification-->
@@ -30,13 +31,16 @@ include("Header.php");
                 <a href="">
                     <h3 style="text-align: center;">Forgotten password ?</h3>
                 </a>
-                <hr/>
+                <hr />
             </form>
             <a href="register.php">
                 <button onclick="" id="register-button">REGISTER</button>
             </a>
             <a href="index.php"> This goes to the main page Page</a>
         </div>
+        <div id="error-box">
+        </div>
+    </div>
     <?php
     include("Footer.php");
     ?>
@@ -47,6 +51,15 @@ include("Header.php");
 
 <?php
 
+function displayError($errorMessage)
+{
+    echo '<script>
+    const errorBox = document.getElementById("error-box");
+    errorBox.style.visibility = "visible";
+    errorBox.innerText = "' . $errorMessage . '";
+    </script>';
+}
+
 //echo "{$_POST["username"]}  <br>";
 //echo "{$_POST["password"]} <br>";
 
@@ -55,7 +68,6 @@ include("Header.php");
 
 // More reliable
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 
     //Stop the user from using special character
     //Prevent people from using script or sql injection 
@@ -66,19 +78,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //If not an email return nothing
     $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
 
-
-
     if (empty($username)) {
-        echo "username is missing";
+        displayError("username is missing");
+        //echo "username is missing";
         exit(0);
     } else if (empty($password)) {
-        echo "password is missing";
+        displayError("password is missing");
+        //echo "password is missing";
         exit(0);
     } else if (empty($email)) {
-        echo "That email is invalid";
+        displayError("email is missing");
+        //echo "email is missing";
         exit(0);
     } else {
-
         try {
             // Template of the request
             $sql = "SELECT * FROM users WHERE username = ?";
@@ -93,8 +105,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $stmt->get_result();
             $user = $result->fetch_assoc();
 
-            if (isset($user) && password_verify($password, $user["password_hash"]) && password_verify($email, $user["email"])) {
-                echo "user $username is now logged" . "<br>";
+            /*
+            if ($email === $user["email"]) {
+                echo "true";
+            } else {
+                echo "false";
+            }
+            */
+            if (isset($user) && password_verify($password, $user["password_hash"]) &&  mb_strtolower($email) === $user["email"]) {
+                //echo "user $username is now logged" . "<br>";
                 // Lors de la connection récupère l'user id de l'utilisateur et l'attribue à la session
                 // la session = sessionID
                 $_SESSION["user_id"] = $user["user_id"];
@@ -106,7 +125,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["email"] = $email;
                 header("Location: index.php");
             } else {
-                echo "username or password or email is invalid" . "<br>";
+                displayError("username or password or email is invalid");
+                //echo "username or password or email is invalid" . "<br>";
                 exit;
             }
         } catch (mysqli_sql_exception $e) {

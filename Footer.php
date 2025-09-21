@@ -15,9 +15,9 @@
         </nav>
         <nav padding="15px">
             <ul class="headline">Learn</ul>
-            <ul><a href=>Privacy</a></ul>
-            <ul><a href=>Cookie settings</a></ul>
-            <ul><a href=>Terms</a></ul>
+            <ul><a href="privacy.php">Privacy</a></ul>
+            <ul><a href="cookies.php">Cookie settings</a></ul>
+            <ul><a href="terms.php">Terms</a></ul>
         </nav>
     </footer>
 </body>

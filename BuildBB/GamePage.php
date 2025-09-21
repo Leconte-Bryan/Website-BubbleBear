@@ -77,12 +77,12 @@ if (isset($_SESSION["username"])) {
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/Nouveau dossier.loader.js";
+    var loaderUrl = buildUrl + "/BBuble.loader.js";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/Nouveau dossier.data.unityweb",
-      frameworkUrl: buildUrl + "/Nouveau dossier.framework.js.unityweb",
-      codeUrl: buildUrl + "/Nouveau dossier.wasm.unityweb",
+      dataUrl: buildUrl + "/BBuble.data.unityweb",
+      frameworkUrl: buildUrl + "/BBuble.framework.js.unityweb",
+      codeUrl: buildUrl + "/BBuble.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "Bubbles GGJ",
