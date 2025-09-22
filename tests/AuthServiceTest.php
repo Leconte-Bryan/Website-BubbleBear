@@ -16,7 +16,7 @@ class AuthServiceTest extends TestCase {
     // Login success
     // Data correspond to one of the user in the database
     public function testLoginSuccess() {
-        $this->assertTrue($this->auth->login("bryan123geg","password123", "bryan123@test.com"));
+        $this->assertTrue($this->auth->login("bryan123","password123", "bryan123@test.com"));
     }
 
     // Wrong password trying to login
@@ -32,7 +32,7 @@ class AuthServiceTest extends TestCase {
     public function testValidUsernameSucces(){
         $this->assertTrue($this->auth->validUsername(("bryan123")));
     }
-
+    
     public function testValidUsernameFailure(){
         $this->assertFalse($this->auth->validUsername(("brya")));
         $this->assertFalse($this->auth->validUsername(("bryagruniungeirghrrh")));
