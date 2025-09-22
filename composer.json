@@ -1,4 +1,6 @@
 {
+    "name": "bubblebear/speedrun",
+    "description": "",
     "require-dev": {
         "phpunit/phpunit": "^11.5"
     },
