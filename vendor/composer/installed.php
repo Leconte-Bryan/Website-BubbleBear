@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => '__root__',
+        'name' => 'bubblebear/speedrun',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '445c913cc8aa388b1563d7971eeef5bb0dfb90d7',
+        'reference' => 'f0902856bd8f9a4eaac38c569b619f472c186106',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
+        'bubblebear/speedrun' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '445c913cc8aa388b1563d7971eeef5bb0dfb90d7',
+            'reference' => 'f0902856bd8f9a4eaac38c569b619f472c186106',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
