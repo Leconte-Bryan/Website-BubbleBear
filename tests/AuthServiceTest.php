@@ -16,7 +16,7 @@ class AuthServiceTest extends TestCase {
     // Login success
     // Data correspond to one of the user in the database
     public function testLoginSuccess() {
-        $this->assertTrue($this->auth->login("bryan3","password123", "bryan123@test.com"));
+        $this->assertTrue($this->auth->login("bryan123","password123", "bryan123@test.com"));
     }
 
     // Wrong password trying to login
